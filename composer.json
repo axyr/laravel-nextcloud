@@ -1,0 +1,38 @@
+{
+    "name": "axyr/laravel-nextcloud",
+    "description": "Laravel Nextcloud client",
+    "type": "library",
+    "keywords": ["laravel", "module", "nexcloud", "api", "client"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Martijn van Nieuwenhoven",
+            "email": "info@axyrmedia.nl"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Axyr\\Nextcloud\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Axyr\\Nextcloud\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": "^8.2",
+        "laravel/framework": "^12.0"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest",
+        "orchestra/testbench": "^v10.4"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Axyr\\Nextcloud\\NextcloudServiceProvider"
+            ]
+        }
+    }
+}
