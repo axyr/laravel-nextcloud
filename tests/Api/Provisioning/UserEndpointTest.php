@@ -111,7 +111,7 @@ class UserEndpointTest extends TestCase
             userid: 'admin',
             password: 'password',
             displayName: 'New User',
-            email: '@new@example.org',
+            email: 'new@example.org',
             groups: ['GroupA'],
             subadmin: ['GroupA'],
             quota: 'test',
@@ -141,6 +141,14 @@ class UserEndpointTest extends TestCase
         $this->assertInstanceOf(User::class, $users->first());
     }
 
+    public function testSearchByPhone(): void
+    {
+        $this->fakeHttpResponse('fixtures/api/provisioning/user-endpoint/users.json');
+
+        // todo this does not work
+        $users = Nextcloud::provisioning()->users()->searchByPhone('31', ['0612345678']);
+    }
+
     public function testGetUser(): void
     {
         $this->fakeHttpResponse('fixtures/api/provisioning/user-endpoint/user.json');
@@ -153,6 +161,71 @@ class UserEndpointTest extends TestCase
 
         $this->assertEquals(-3, $user->quota()->free());
         $this->assertEquals(20575003, $user->quota()->used());
+    }
+
+    public function testGetCurrentUser(): void
+    {
+        $this->fakeHttpResponse('fixtures/api/provisioning/user-endpoint/user.json');
+
+        $user = Nextcloud::provisioning()->users()->get();
+
+        $this->assertTrue($user->enabled());
+        $this->assertEquals('admin', $user->id());
+        $this->assertEquals('admin@example.net', $user->email());
+
+        $this->assertEquals(-3, $user->quota()->free());
+        $this->assertEquals(20575003, $user->quota()->used());
+    }
+
+    public function testGetUserEditableFields(): void
+    {
+        $this->fakeHttpResponse('fixtures/api/provisioning/user-endpoint/editable-fields.json');
+
+        $fields = Nextcloud::provisioning()->users()->fields('admin');
+
+        $this->assertCount(14, $fields);
+        $this->assertEquals('displayname', $fields->first()->name());
+        $this->assertEquals('pronouns', $fields->last()->name());
+    }
+
+    public function testGetCurrentUserEditableFields(): void
+    {
+        $this->fakeHttpResponse('fixtures/api/provisioning/user-endpoint/editable-fields.json');
+
+        $fields = Nextcloud::provisioning()->users()->fields();
+
+        $this->assertCount(14, $fields);
+        $this->assertEquals('displayname', $fields->first()->name());
+        $this->assertEquals('pronouns', $fields->last()->name());
+    }
+
+    public function testGetCurrentUserApps(): void
+    {
+        $this->fakeHttpResponse('fixtures/api/provisioning/app-endpoint/apps.json');
+
+        $apps = Nextcloud::provisioning()->users()->apps();
+
+        $this->assertCount(26, $apps);
+        $this->assertEquals('encryption', $apps->first()->id());
+        $this->assertEquals('user_oidc', $apps->last()->id());
+    }
+
+    public function testUpdateUser(): void
+    {
+        $this->fakeHttpResponse('fixtures/api/generic-ok.json');
+
+        $result = Nextcloud::provisioning()->users()->update('admin', 'email', 'some@email.com');
+
+        $this->assertTrue($result);
+    }
+
+    public function testDeleteUser(): void
+    {
+        $this->fakeHttpResponse('fixtures/api/generic-ok.json');
+
+        $result = Nextcloud::provisioning()->users()->delete('bob');
+
+        $this->assertTrue($result);
     }
 
     public function testEnableUser(): void

@@ -4,6 +4,8 @@ namespace Axyr\Nextcloud\Api\Provisioning;
 
 use Axyr\Nextcloud\Api\AbstractEndpoint;
 use Axyr\Nextcloud\Requests\UserCreateRequest;
+use Axyr\Nextcloud\ValueObjects\AppId;
+use Axyr\Nextcloud\ValueObjects\Field;
 use Axyr\Nextcloud\ValueObjects\GroupId;
 use Axyr\Nextcloud\ValueObjects\User;
 use Axyr\Nextcloud\ValueObjects\UserId;
@@ -102,13 +104,64 @@ class UserEndpoint extends AbstractEndpoint
         return $response->collect('ocs.data.users')->mapInto(User::class);
     }
 
-    public function get(string $id): User
+    public function searchByPhone(string $location, array $search): Collection
     {
-        $response = $this->apiGet("ocs/v2.php/cloud/users/{$id}");
+        $response = $this->apiGet('ocs/v2.php/cloud/users/search/by-phone', [
+            'location' => $location,
+            'search' => $search,
+        ]);
+
+        $this->throwExceptionIfNotOk($response);
+
+        return $response->collect('ocs.data.users')->mapInto(User::class);
+    }
+
+    public function get(?string $id = null): User
+    {
+        $response = $id ? $this->apiGet("ocs/v2.php/cloud/users/{$id}") : $this->apiGet("ocs/v2.php/cloud/user");
 
         $this->throwExceptionIfNotOk($response);
 
         return new User($response->json('ocs.data'));
+    }
+
+    public function fields(?string $id = null): Collection
+    {
+        $response = $id ? $this->apiGet("ocs/v2.php/cloud/user/fields/{$id}") : $this->apiGet("ocs/v2.php/cloud/user/fields");
+
+        $this->throwExceptionIfNotOk($response);
+
+        return $response->collect('ocs.data')->map(fn($name) => new Field(['name' => $name]));
+    }
+
+    public function apps(): Collection
+    {
+        $response = $this->apiGet("ocs/v2.php/cloud/user/apps");
+        
+        $this->throwExceptionIfNotOk($response);
+
+        return $response->collect('ocs.data.apps')->map(fn($id) => new AppId(['id' => $id]));
+    }
+
+    public function update(string $id, string $key, mixed $value): bool
+    {
+        $response = $this->apiPut("ocs/v2.php/cloud/users/{$id}", [
+            'key' => $key,
+            'value' => $value,
+        ]);
+
+        $this->throwExceptionIfNotOk($response);
+
+        return true;
+    }
+
+    public function delete(string $id): bool
+    {
+        $response = $this->apiDelete("ocs/v2.php/cloud/users/{$id}");
+
+        $this->throwExceptionIfNotOk($response);
+
+        return true;
     }
 
     public function enable(string $id): bool

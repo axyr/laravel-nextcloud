@@ -1,0 +1,25 @@
+{
+    "ocs": {
+        "meta": {
+            "status": "ok",
+            "statuscode": 200,
+            "message": "OK"
+        },
+        "data": [
+            "displayname",
+            "email",
+            "additional_mail",
+            "phone",
+            "address",
+            "website",
+            "twitter",
+            "fediverse",
+            "organisation",
+            "role",
+            "headline",
+            "biography",
+            "profile_enabled",
+            "pronouns"
+        ]
+    }
+}
