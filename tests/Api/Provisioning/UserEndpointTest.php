@@ -4,7 +4,7 @@ namespace Axyr\Nextcloud\Tests\Api\Provisioning;
 
 use Axyr\Nextcloud\Facades\Nextcloud;
 use Axyr\Nextcloud\Tests\TestCase;
-use Axyr\Nextcloud\ValueObjects\Group;
+use Axyr\Nextcloud\ValueObjects\GroupId;
 use Axyr\Nextcloud\ValueObjects\User;
 
 class UserEndpointTest extends TestCase
@@ -36,7 +36,7 @@ class UserEndpointTest extends TestCase
 
         $groups = Nextcloud::provisioning()->users()->subadmins('alice');
 
-        $this->assertInstanceOf(Group::class, $groups->first());
+        $this->assertInstanceOf(GroupId::class, $groups->first());
         $this->assertEquals('GroupA', $groups->first()->id());
     }
 
