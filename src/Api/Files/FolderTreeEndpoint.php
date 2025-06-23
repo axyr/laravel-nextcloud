@@ -13,7 +13,7 @@ class FolderTreeEndpoint extends AbstractEndpoint
      */
     public function list(array $options = []): Collection
     {
-        $response = $this->httpClient()->get($this->getUrl('ocs/v2.php/apps/files/api/v1/folder-tree'), $options);
+        $response = $this->apiGet('ocs/v2.php/apps/files/api/v1/folder-tree', $options);
 
         $this->throwExceptionIfNotOk($response);
 

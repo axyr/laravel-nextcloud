@@ -14,7 +14,7 @@ class GroupEndpoint extends AbstractEndpoint
      */
     public function list(array $options = []): Collection
     {
-        $response = $this->httpClient()->get($this->getUrl('ocs/v2.php/cloud/groups'), $options);
+        $response = $this->apiGet('ocs/v2.php/cloud/groups', $options);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -26,7 +26,7 @@ class GroupEndpoint extends AbstractEndpoint
      */
     public function subadmins(string $groupId): Collection
     {
-        $response = $this->httpClient()->get($this->getUrl("ocs/v2.php/cloud/groups/{$groupId}/subadmins"));
+        $response = $this->apiGet("ocs/v2.php/cloud/groups/{$groupId}/subadmins");
 
         $this->throwExceptionIfNotOk($response);
 
@@ -38,7 +38,7 @@ class GroupEndpoint extends AbstractEndpoint
      */
     public function users(string $groupId): Collection
     {
-        $response = $this->httpClient()->get($this->getUrl("ocs/v2.php/cloud/groups/{$groupId}"));
+        $response = $this->apiGet("ocs/v2.php/cloud/groups/{$groupId}");
 
         $this->throwExceptionIfNotOk($response);
 

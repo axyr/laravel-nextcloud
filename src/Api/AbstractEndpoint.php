@@ -13,7 +13,7 @@ abstract class AbstractEndpoint
 {
     public function __construct(private readonly ConfigInterface $config) {}
 
-    public function httpClient(): PendingRequest
+    protected function httpClient(): PendingRequest
     {
         return Http::withBasicAuth(
             $this->config->getUsername(),
@@ -22,12 +22,32 @@ abstract class AbstractEndpoint
             ->withHeaders($this->config->getDefaultHeaders());
     }
 
-    public function getUrl(string $path): string
+    protected function apiGet($path, array $query = []): Response
+    {
+        return $this->httpClient()->get($this->getUrl($path), $query);
+    }
+
+    protected function apiPost($path, array $data = []): Response
+    {
+        return $this->httpClient()->post($this->getUrl($path), $data);
+    }
+
+    protected function apiPut($path, array $data = []): Response
+    {
+        return $this->httpClient()->put($this->getUrl($path), $data);
+    }
+
+    protected function apiDelete($path, array $data = []): Response
+    {
+        return $this->httpClient()->delete($this->getUrl($path), $data);
+    }
+
+    protected function getUrl(string $path): string
     {
         return Str::finish($this->config->getBaseUrl(), '/') . $path;
     }
 
-    public function throwExceptionIfNotOk(Response $response): void
+    protected function throwExceptionIfNotOk(Response $response): void
     {
         throw_unless($response->ok(), new NextCloudApiException($response->getReasonPhrase(), $response->getStatusCode()));
     }

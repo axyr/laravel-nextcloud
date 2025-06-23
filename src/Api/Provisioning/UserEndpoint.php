@@ -14,7 +14,7 @@ class UserEndpoint extends AbstractEndpoint
      */
     public function list(array $options = []): Collection
     {
-        $response = $this->httpClient()->get($this->getUrl('ocs/v2.php/cloud/users/details'), $options);
+        $response = $this->apiGet('ocs/v2.php/cloud/users/details', $options);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -26,7 +26,7 @@ class UserEndpoint extends AbstractEndpoint
      */
     public function recent(array $options = []): Collection
     {
-        $response = $this->httpClient()->get($this->getUrl('ocs/v2.php/cloud/users/recent'), $options);
+        $response = $this->apiGet('ocs/v2.php/cloud/users/recent', $options);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -38,7 +38,7 @@ class UserEndpoint extends AbstractEndpoint
      */
     public function subadmins(string $userId): Collection
     {
-        $response = $this->httpClient()->get($this->getUrl("ocs/v2.php/cloud/users/{$userId}/subadmins"));
+        $response = $this->apiGet("ocs/v2.php/cloud/users/{$userId}/subadmins");
 
         $this->throwExceptionIfNotOk($response);
 
@@ -47,7 +47,7 @@ class UserEndpoint extends AbstractEndpoint
 
     public function get(string $id): User
     {
-        $response = $this->httpClient()->get($this->getUrl("ocs/v2.php/cloud/users/{$id}"));
+        $response = $this->apiGet("ocs/v2.php/cloud/users/{$id}");
 
         $this->throwExceptionIfNotOk($response);
 
