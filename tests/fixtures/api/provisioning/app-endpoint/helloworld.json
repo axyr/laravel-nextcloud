@@ -1,0 +1,74 @@
+{
+  "ocs": {
+    "meta": {
+      "status": "ok",
+      "statuscode": 200,
+      "message": "OK"
+    },
+    "data": {
+      "id": "helloworld",
+      "name": "Hello World",
+      "summary": "HelloWorld",
+      "description": "HelloWorld",
+      "version": "1.0.0",
+      "licence": "agpl",
+      "author": {
+        "@attributes": {
+          "mail": "info@axyrmedia.nl",
+          "homepage": "https:\/\/martijnvannieuwenhoven.com\/"
+        },
+        "@value": "Martijn"
+      },
+      "namespace": "HelloWorld",
+      "category": [
+        "tools"
+      ],
+      "bugs": "https:\/\/martijnvannieuwenhoven.com\/",
+      "dependencies": {
+        "nextcloud": {
+          "@attributes": {
+            "min-version": "29",
+            "max-version": "31"
+          }
+        },
+        "backend": []
+      },
+      "navigations": {
+        "navigation": [
+          {
+            "id": "helloworld",
+            "name": "Hello World",
+            "route": "helloworld.page.index",
+            "icon": "app.svg",
+            "type": "link"
+          }
+        ]
+      },
+      "info": [],
+      "remote": [],
+      "public": [],
+      "types": [],
+      "repair-steps": {
+        "install": [],
+        "pre-migration": [],
+        "post-migration": [],
+        "live-migration": [],
+        "uninstall": []
+      },
+      "background-jobs": [],
+      "two-factor-providers": [],
+      "commands": [],
+      "activity": {
+        "filters": [],
+        "settings": [],
+        "providers": []
+      },
+      "settings": {
+        "admin": [],
+        "admin-section": [],
+        "personal": [],
+        "personal-section": []
+      }
+    }
+  }
+}

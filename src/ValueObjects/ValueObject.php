@@ -2,9 +2,11 @@
 
 namespace Axyr\Nextcloud\ValueObjects;
 
+use Illuminate\Support\Arr;
+
 abstract class ValueObject
 {
-   public function __construct(private readonly array $attributes = []) { }
+    public function __construct(private readonly array $attributes = []) {}
 
     public function getAttributes(): array
     {
@@ -13,6 +15,6 @@ abstract class ValueObject
 
     public function getValue(string $key): mixed
     {
-        return $this->attributes[$key] ?? null;
+        return Arr::get($this->attributes, $key);
     }
 }

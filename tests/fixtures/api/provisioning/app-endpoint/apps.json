@@ -1,0 +1,39 @@
+{
+    "ocs": {
+        "meta": {
+            "status": "ok",
+            "statuscode": 200,
+            "message": "OK"
+        },
+        "data": {
+            "apps": [
+                "encryption",
+                "comments",
+                "webhook_listeners",
+                "user_ldap",
+                "updatenotification",
+                "files_trashbin",
+                "files_external",
+                "dashboard",
+                "testing",
+                "files_reminders",
+                "systemtags",
+                "federation",
+                "weather_status",
+                "contactsinteraction",
+                "files_versions",
+                "user_status",
+                "files_sharing",
+                "sharebymail",
+                "admin_audit",
+                "helloworld",
+                "files_pdfviewer",
+                "circles",
+                "hmr_enabler",
+                "recommendations",
+                "profiler",
+                "user_oidc"
+            ]
+        }
+    }
+}

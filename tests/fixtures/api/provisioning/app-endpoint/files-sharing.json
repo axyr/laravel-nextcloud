@@ -1,0 +1,105 @@
+{
+    "ocs": {
+        "meta": {
+            "status": "ok",
+            "statuscode": 200,
+            "message": "OK"
+        },
+        "data": {
+            "id": "files_sharing",
+            "name": "File sharing",
+            "summary": "File sharing",
+            "description": "This application enables people to share files within Nextcloud. If enabled, the admin can choose which groups can share files. The applicable people can then share files and folders with other accounts and groups within Nextcloud. In addition, if the admin enables the share link feature, an external link can be used to share files with other people outside of Nextcloud. Admins can also enforce passwords, expirations dates, and enable server to server sharing via share links, as well as sharing from mobile devices.\nTurning the feature off removes shared files and folders on the server for all share recipients, and also on the sync clients and mobile apps. More information is available in the Nextcloud Documentation.",
+            "version": "1.24.0",
+            "licence": "agpl",
+            "author": [
+                "Michael Gapczynski",
+                "Bjoern Schiessle"
+            ],
+            "namespace": "Files_Sharing",
+            "types": [
+                "filesystem"
+            ],
+            "category": [
+                "files",
+                "social"
+            ],
+            "bugs": "https:\/\/github.com\/nextcloud\/server\/issues",
+            "dependencies": {
+                "nextcloud": {
+                    "@attributes": {
+                        "min-version": "32",
+                        "max-version": "32"
+                    }
+                },
+                "backend": []
+            },
+            "background-jobs": [
+                "OCA\\Files_Sharing\\DeleteOrphanedSharesJob",
+                "OCA\\Files_Sharing\\ExpireSharesJob",
+                "OCA\\Files_Sharing\\SharesReminderJob",
+                "OCA\\Files_Sharing\\BackgroundJob\\FederatedSharesDiscoverJob"
+            ],
+            "repair-steps": {
+                "post-migration": [
+                    "OCA\\Files_Sharing\\Migration\\OwncloudGuestShareType",
+                    "OCA\\Files_Sharing\\Migration\\SetPasswordColumn",
+                    "OCA\\Files_Sharing\\Migration\\SetAcceptedStatus"
+                ],
+                "install": [],
+                "pre-migration": [],
+                "live-migration": [],
+                "uninstall": []
+            },
+            "commands": [
+                "OCA\\Files_Sharing\\Command\\CleanupRemoteStorages",
+                "OCA\\Files_Sharing\\Command\\ExiprationNotification",
+                "OCA\\Files_Sharing\\Command\\DeleteOrphanShares",
+                "OCA\\Files_Sharing\\Command\\FixShareOwners",
+                "OCA\\Files_Sharing\\Command\\ListShares"
+            ],
+            "settings": {
+                "personal": [
+                    "OCA\\Files_Sharing\\Settings\\Personal"
+                ],
+                "admin": [],
+                "admin-section": [],
+                "personal-section": []
+            },
+            "activity": {
+                "settings": [
+                    "OCA\\Files_Sharing\\Activity\\Settings\\Shared",
+                    "OCA\\Files_Sharing\\Activity\\Settings\\RemoteShare",
+                    "OCA\\Files_Sharing\\Activity\\Settings\\PublicLinks",
+                    "OCA\\Files_Sharing\\Activity\\Settings\\PublicLinksUpload"
+                ],
+                "filters": {
+                    "filter": "OCA\\Files_Sharing\\Activity\\Filter"
+                },
+                "providers": [
+                    "OCA\\Files_Sharing\\Activity\\Providers\\Downloads",
+                    "OCA\\Files_Sharing\\Activity\\Providers\\Groups",
+                    "OCA\\Files_Sharing\\Activity\\Providers\\PublicLinks",
+                    "OCA\\Files_Sharing\\Activity\\Providers\\RemoteShares",
+                    "OCA\\Files_Sharing\\Activity\\Providers\\Users"
+                ]
+            },
+            "collaboration": {
+                "plugins": {
+                    "plugin": {
+                        "@attributes": {
+                            "type": "autocomplete-sort"
+                        },
+                        "@value": "OCA\\Files_Sharing\\Collaboration\\ShareRecipientSorter"
+                    }
+                }
+            },
+            "public": {
+                "files": "public.php"
+            },
+            "info": [],
+            "remote": [],
+            "two-factor-providers": []
+        }
+    }
+}
