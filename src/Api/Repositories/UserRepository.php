@@ -13,7 +13,7 @@ class UserRepository extends Repository
      */
     public function get(array $options = []): Collection
     {
-        $response = $this->httpClient()->get($this->getUrl('cloud/users/details'), $options);
+        $response = $this->httpClient()->get($this->getUrl('ocs/v2.php/cloud/users/details'), $options);
 
         if ($response->ok()) {
             return $response->collect('ocs.data.users')->mapInto(User::class);
@@ -24,7 +24,7 @@ class UserRepository extends Repository
 
     public function find(string $id): User
     {
-        $response = $this->httpClient()->get($this->getUrl("cloud/users/{$id}"));
+        $response = $this->httpClient()->get($this->getUrl("ocs/v2.php/cloud/users/{$id}"));
 
         if ($response->ok()) {
             return new User($response->json('ocs.data'));

@@ -13,7 +13,7 @@ class FolderTreeRepository extends Repository
      */
     public function get(array $options = []): Collection
     {
-        $response = $this->httpClient()->get($this->getUrl('apps/files/api/v1/folder-tree'), $options);
+        $response = $this->httpClient()->get($this->getUrl('ocs/v2.php/apps/files/api/v1/folder-tree'), $options);
 
         if ($response->ok()) {
             return $response->collect()->mapInto(Folder::class);
