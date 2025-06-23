@@ -2,9 +2,10 @@
 
 namespace Axyr\Nextcloud\Api;
 
-use Axyr\Nextcloud\Api\Repositories\FolderTreeRepository;
-use Axyr\Nextcloud\Api\Repositories\StatusRepository;
-use Axyr\Nextcloud\Api\Repositories\UserRepository;
+use Axyr\Nextcloud\Api\Endpoints\FolderTreeEndpoint;
+use Axyr\Nextcloud\Api\Endpoints\GroupEndpoint;
+use Axyr\Nextcloud\Api\Endpoints\StatusEndpoint;
+use Axyr\Nextcloud\Api\Endpoints\UserEndpoint;
 use Axyr\Nextcloud\Contracts\ConfigInterface;
 
 readonly class Api
@@ -16,18 +17,23 @@ readonly class Api
         return $this->config;
     }
 
-    public function users(): UserRepository
+    public function groups(): GroupEndpoint
     {
-        return new UserRepository($this);
+        return new GroupEndpoint($this);
     }
 
-    public function folderTree(): FolderTreeRepository
+    public function users(): UserEndpoint
     {
-        return new FolderTreeRepository($this);
+        return new UserEndpoint($this);
     }
 
-    public function status(): StatusRepository
+    public function folderTree(): FolderTreeEndpoint
     {
-        return new StatusRepository($this);
+        return new FolderTreeEndpoint($this);
+    }
+
+    public function status(): StatusEndpoint
+    {
+        return new StatusEndpoint($this);
     }
 }

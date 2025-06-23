@@ -1,15 +1,15 @@
 <?php
 
-namespace Axyr\Nextcloud\Tests\Api\Repositories;
+namespace Axyr\Nextcloud\Tests\Api\Endpoints;
 
 use Axyr\Nextcloud\Facades\Nextcloud;
 use Axyr\Nextcloud\Tests\TestCase;
 
-class StatusRepositoryTest extends TestCase
+class StatusEndpointTest extends TestCase
 {
     public function testGetStatus(): void
     {
-        $this->fakeHttpResponse('fixtures/api/repositories/status-repository/status.json');
+        $this->fakeHttpResponse('fixtures/api/endpoints/status-endpoint/status.json');
 
         $status = Nextcloud::api()->status()->get();
 

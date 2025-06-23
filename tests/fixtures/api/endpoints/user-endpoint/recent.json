@@ -1,0 +1,56 @@
+{
+    "ocs": {
+        "meta": {
+            "status": "ok",
+            "statuscode": 200,
+            "message": "OK"
+        },
+        "data": {
+            "users": {
+                "admin": {
+                    "enabled": true,
+                    "storageLocation": "\/var\/www\/html\/data\/admin",
+                    "id": "admin",
+                    "firstLoginTimestamp": 1750581502,
+                    "lastLoginTimestamp": 1750683124,
+                    "lastLogin": 1750683124000,
+                    "backend": "Database",
+                    "subadmin": [],
+                    "quota": {
+                        "free": -3,
+                        "used": 20576160,
+                        "total": -3,
+                        "relative": 0,
+                        "quota": -3
+                    },
+                    "manager": "",
+                    "email": "admin@example.net",
+                    "additional_mail": [],
+                    "displayname": "admin",
+                    "display-name": "admin",
+                    "phone": "",
+                    "address": "",
+                    "website": "",
+                    "twitter": "",
+                    "fediverse": "",
+                    "organisation": "",
+                    "role": "",
+                    "headline": "",
+                    "biography": "",
+                    "profile_enabled": "1",
+                    "pronouns": "",
+                    "groups": [
+                        "admin"
+                    ],
+                    "language": "nl",
+                    "locale": "",
+                    "notify_email": null,
+                    "backendCapabilities": {
+                        "setDisplayName": true,
+                        "setPassword": false
+                    }
+                }
+            }
+        }
+    }
+}

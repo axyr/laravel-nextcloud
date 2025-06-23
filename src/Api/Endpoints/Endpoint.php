@@ -1,6 +1,6 @@
 <?php
 
-namespace Axyr\Nextcloud\Api\Repositories;
+namespace Axyr\Nextcloud\Api\Endpoints;
 
 use Axyr\Nextcloud\Api\Api;
 use Axyr\Nextcloud\Exception\NextCloudApiException;
@@ -9,7 +9,7 @@ use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
-abstract class Repository
+abstract class Endpoint
 {
     public function __construct(protected readonly Api $api) {}
 
