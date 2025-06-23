@@ -51,7 +51,7 @@ class GroupEndpointTest extends TestCase
 
     public function testCreateGroup(): void
     {
-        $this->fakeHttpResponse('fixtures/api/provisioning/group-endpoint/create.json');
+        $this->fakeHttpResponse('fixtures/api/generic-ok.json');
 
         $result = Nextcloud::provisioning()->groups()->create([
             'groupid' => 'groupid',
@@ -63,7 +63,7 @@ class GroupEndpointTest extends TestCase
 
     public function testUpdateGroup(): void
     {
-        $this->fakeHttpResponse('fixtures/api/provisioning/group-endpoint/update.json');
+        $this->fakeHttpResponse('fixtures/api/generic-ok.json');
 
         $result = Nextcloud::provisioning()->groups()->update('groupid', 'new displayname');
 
@@ -72,7 +72,7 @@ class GroupEndpointTest extends TestCase
 
     public function testDeleteGroup(): void
     {
-        $this->fakeHttpResponse('fixtures/api/provisioning/group-endpoint/delete.json');
+        $this->fakeHttpResponse('fixtures/api/generic-ok.json');
 
         $result = Nextcloud::provisioning()->groups()->delete('groupid');
 

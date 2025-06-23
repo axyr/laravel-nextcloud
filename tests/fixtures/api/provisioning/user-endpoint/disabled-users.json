@@ -1,0 +1,95 @@
+{
+    "ocs": {
+        "meta": {
+            "status": "ok",
+            "statuscode": 200,
+            "message": "OK"
+        },
+        "data": {
+            "users": {
+                "bob": {
+                    "enabled": false,
+                    "storageLocation": "\/var\/www\/html\/data\/bob",
+                    "id": "bob",
+                    "firstLoginTimestamp": 0,
+                    "lastLoginTimestamp": 0,
+                    "lastLogin": 0,
+                    "backend": "Database",
+                    "subadmin": [],
+                    "quota": {
+                        "free": -3,
+                        "used": 0,
+                        "total": -3,
+                        "relative": 0,
+                        "quota": -3
+                    },
+                    "manager": "",
+                    "email": null,
+                    "additional_mail": [],
+                    "displayname": "bob",
+                    "display-name": "bob",
+                    "phone": "",
+                    "address": "",
+                    "website": "",
+                    "twitter": "",
+                    "fediverse": "",
+                    "organisation": "",
+                    "role": "",
+                    "headline": "",
+                    "biography": "",
+                    "profile_enabled": "1",
+                    "pronouns": "",
+                    "groups": [],
+                    "language": "en",
+                    "locale": "",
+                    "notify_email": null,
+                    "backendCapabilities": {
+                        "setDisplayName": true,
+                        "setPassword": true
+                    }
+                },
+                "jane": {
+                    "enabled": false,
+                    "storageLocation": "\/var\/www\/html\/data\/jane",
+                    "id": "jane",
+                    "firstLoginTimestamp": 0,
+                    "lastLoginTimestamp": 0,
+                    "lastLogin": 0,
+                    "backend": "Database",
+                    "subadmin": [],
+                    "quota": {
+                        "free": -3,
+                        "used": 0,
+                        "total": -3,
+                        "relative": 0,
+                        "quota": -3
+                    },
+                    "manager": "",
+                    "email": null,
+                    "additional_mail": [],
+                    "displayname": "jane",
+                    "display-name": "jane",
+                    "phone": "",
+                    "address": "",
+                    "website": "",
+                    "twitter": "",
+                    "fediverse": "",
+                    "organisation": "",
+                    "role": "",
+                    "headline": "",
+                    "biography": "",
+                    "profile_enabled": "1",
+                    "pronouns": "",
+                    "groups": [],
+                    "language": "en",
+                    "locale": "",
+                    "notify_email": null,
+                    "backendCapabilities": {
+                        "setDisplayName": true,
+                        "setPassword": true
+                    }
+                }
+            }
+        }
+    }
+}

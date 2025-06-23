@@ -2,23 +2,16 @@
 
 namespace Axyr\Nextcloud\Tests\Api\Provisioning;
 
+use Axyr\Nextcloud\Exception\NextCloudApiException;
 use Axyr\Nextcloud\Facades\Nextcloud;
+use Axyr\Nextcloud\Requests\UserCreateRequest;
 use Axyr\Nextcloud\Tests\TestCase;
 use Axyr\Nextcloud\ValueObjects\GroupId;
 use Axyr\Nextcloud\ValueObjects\User;
+use Axyr\Nextcloud\ValueObjects\UserId;
 
 class UserEndpointTest extends TestCase
 {
-    public function testGetUsers(): void
-    {
-        $this->fakeHttpResponse('fixtures/api/provisioning/user-endpoint/users.json');
-
-        $users = Nextcloud::provisioning()->users()->list();
-
-        $this->assertCount(12, $users);
-        $this->assertInstanceOf(User::class, $users->first());
-    }
-
     public function testGetRecentUsers(): void
     {
         $this->fakeHttpResponse('fixtures/api/provisioning/user-endpoint/recent.json');
@@ -40,6 +33,114 @@ class UserEndpointTest extends TestCase
         $this->assertEquals('GroupA', $groups->first()->id());
     }
 
+    public function testAddSubadminToGroup(): void
+    {
+        $this->fakeHttpResponse('fixtures/api/generic-ok.json');
+
+        $result = Nextcloud::provisioning()->users()->addSubadminToGroup('alice', 'GroupA');
+
+        $this->assertTrue($result);
+    }
+
+    public function testFailAddSubadminToGroup(): void
+    {
+        $this->expectException(NextCloudApiException::class);
+
+        $this->fakeHttpResponse('fixtures/api/generic-bad-request.json', 400);
+
+        Nextcloud::provisioning()->users()->addSubadminToGroup('alice', 'admin');
+    }
+
+    public function testRemoveSubadminFromGroup(): void
+    {
+        $this->fakeHttpResponse('fixtures/api/generic-ok.json');
+
+        $result = Nextcloud::provisioning()->users()->removeSubadminFromGroup('alice', 'GroupA');
+
+        $this->assertTrue($result);
+    }
+
+    public function testFailRemoveSubadminFromGroup(): void
+    {
+        $this->expectException(NextCloudApiException::class);
+
+        $this->fakeHttpResponse('fixtures/api/generic-bad-request.json', 400);
+
+        Nextcloud::provisioning()->users()->removeSubadminFromGroup('alice', 'GroupA');
+    }
+
+    public function testGetUsers(): void
+    {
+        $this->fakeHttpResponse('fixtures/api/provisioning/user-endpoint/users.json');
+
+        $users = Nextcloud::provisioning()->users()->list();
+
+        $this->assertCount(12, $users);
+        $this->assertInstanceOf(UserId::class, $users->first());
+    }
+
+    public function testCreateUser(): void
+    {
+        $this->fakeHttpResponse('fixtures/api/provisioning/user-endpoint/new-user-created.json');
+
+        $request = new UserCreateRequest(
+            userid: 'new user',
+            password: 'password',
+            displayName: 'New User',
+            email: '@new@example.org',
+            groups: ['GroupA'],
+            subadmin: ['GroupA'],
+            quota: 'test',
+            language: 'en'
+        );
+
+        $user = Nextcloud::provisioning()->users()->create($request);
+
+        $this->assertEquals('new user', $user->id());
+    }
+
+    public function testFailCreateUser(): void
+    {
+        $this->expectException(NextCloudApiException::class);
+        $this->expectExceptionCode(102);
+        $this->expectExceptionMessage('Gebruiker bestaat al');
+
+        $this->fakeHttpResponse('fixtures/api/provisioning/user-endpoint/user-allready-exists.json', 400);
+
+        $request = new UserCreateRequest(
+            userid: 'admin',
+            password: 'password',
+            displayName: 'New User',
+            email: '@new@example.org',
+            groups: ['GroupA'],
+            subadmin: ['GroupA'],
+            quota: 'test',
+            language: 'en'
+        );
+
+        Nextcloud::provisioning()->users()->create($request);
+    }
+
+    public function testGetUserDetails(): void
+    {
+        $this->fakeHttpResponse('fixtures/api/provisioning/user-endpoint/users.json');
+
+        $users = Nextcloud::provisioning()->users()->listDetails();
+
+        $this->assertCount(12, $users);
+        $this->assertInstanceOf(User::class, $users->first());
+    }
+
+    public function testGetDisabledUserDetails(): void
+    {
+        $this->fakeHttpResponse('fixtures/api/provisioning/user-endpoint/disabled-users.json');
+
+        $users = Nextcloud::provisioning()->users()->listDisabledDetails();
+
+        $this->assertCount(2, $users);
+        $this->assertInstanceOf(User::class, $users->first());
+    }
+
     public function testGetUser(): void
     {
         $this->fakeHttpResponse('fixtures/api/provisioning/user-endpoint/user.json');
@@ -52,5 +153,23 @@ class UserEndpointTest extends TestCase
 
         $this->assertEquals(-3, $user->quota()->free());
         $this->assertEquals(20575003, $user->quota()->used());
+    }
+
+    public function testEnableUser(): void
+    {
+        $this->fakeHttpResponse('fixtures/api/generic-ok.json');
+
+        $result = Nextcloud::provisioning()->users()->enable('bob');
+
+        $this->assertTrue($result);
+    }
+
+    public function testDisableUser(): void
+    {
+        $this->fakeHttpResponse('fixtures/api/generic-ok.json');
+
+        $result = Nextcloud::provisioning()->users()->disable('jane');
+
+        $this->assertTrue($result);
     }
 }

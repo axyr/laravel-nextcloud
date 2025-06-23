@@ -35,7 +35,7 @@ class AppEndpointTest extends TestCase
 
     public function testEnableApp(): void
     {
-        $this->fakeHttpResponse('fixtures/api/provisioning/app-endpoint/enable-disable.json');
+        $this->fakeHttpResponse('fixtures/api/generic-ok.json');
 
         $result = Nextcloud::provisioning()->apps()->enable('files_sharing');
 
@@ -44,7 +44,7 @@ class AppEndpointTest extends TestCase
 
     public function testDisableApp(): void
     {
-        $this->fakeHttpResponse('fixtures/api/provisioning/app-endpoint/enable-disable.json');
+        $this->fakeHttpResponse('fixtures/api/generic-ok.json');
 
         $result = Nextcloud::provisioning()->apps()->disable('files_sharing');
 

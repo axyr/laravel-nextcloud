@@ -5,6 +5,8 @@
             "statuscode": 200,
             "message": "OK"
         },
-        "data": []
+        "data": {
+            "id": "new user"
+        }
     }
 }

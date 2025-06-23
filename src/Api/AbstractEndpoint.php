@@ -4,6 +4,7 @@ namespace Axyr\Nextcloud\Api;
 
 use Axyr\Nextcloud\Contracts\ConfigInterface;
 use Axyr\Nextcloud\Exception\NextCloudApiException;
+use Axyr\Nextcloud\ValueObjects\InvalidRequest;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
@@ -45,6 +46,9 @@ abstract class AbstractEndpoint
 
     protected function throwExceptionIfNotOk(Response $response): void
     {
-        throw_unless($response->ok(), new NextCloudApiException($response->getReasonPhrase(), $response->getStatusCode()));
+        if ( ! $response->ok()) {
+            $message = new InvalidRequest($response->json('ocs.meta'));
+            throw new NextCloudApiException($message->message(), $message->statuscode());
+        }
     }
 }

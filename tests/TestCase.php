@@ -17,15 +17,17 @@ class TestCase extends \Orchestra\Testbench\TestCase
         ];
     }
 
-    protected function fakeHttpResponse(string $fixture, ?string $endPoint = null): void
+    protected function fakeHttpResponse(string $fixture, int $statusCode = 200, ?string $endPoint = null): void
     {
         $fixture = file_get_contents($this->baseTestingPath($fixture));
 
-        $endPoint = $endPoint?: config('nextcloud.base_url') . '*';
+        $endPoint = $endPoint ?: config('nextcloud.base_url') . '*';
 
         Http::fake([
             $endPoint => Http::response(
-                $fixture, 200, ['Content-Type' => 'application/json']
+                $fixture,
+                $statusCode,
+                ['Content-Type' => 'application/json']
             ),
         ]);
     }
