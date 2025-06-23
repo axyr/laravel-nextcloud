@@ -19,32 +19,28 @@ abstract class AbstractEndpoint
             $this->config->getUsername(),
             $this->config->getPassword(),
         )
+            ->baseUrl(Str::finish($this->config->getBaseUrl(), '/'))
             ->withHeaders($this->config->getDefaultHeaders());
     }
 
     protected function apiGet($path, array $query = []): Response
     {
-        return $this->httpClient()->get($this->getUrl($path), $query);
+        return $this->httpClient()->get($path, $query);
     }
 
     protected function apiPost($path, array $data = []): Response
     {
-        return $this->httpClient()->post($this->getUrl($path), $data);
+        return $this->httpClient()->post($path, $data);
     }
 
     protected function apiPut($path, array $data = []): Response
     {
-        return $this->httpClient()->put($this->getUrl($path), $data);
+        return $this->httpClient()->put($path, $data);
     }
 
     protected function apiDelete($path, array $data = []): Response
     {
-        return $this->httpClient()->delete($this->getUrl($path), $data);
-    }
-
-    protected function getUrl(string $path): string
-    {
-        return Str::finish($this->config->getBaseUrl(), '/') . $path;
+        return $this->httpClient()->delete($path, $data);
     }
 
     protected function throwExceptionIfNotOk(Response $response): void
