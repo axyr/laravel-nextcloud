@@ -1,0 +1,15 @@
+{
+    "ocs": {
+        "meta": {
+            "status": "ok",
+            "statuscode": 200,
+            "message": "OK"
+        },
+        "data": {
+            "users": [
+                "admin",
+                "john"
+            ]
+        }
+    }
+}

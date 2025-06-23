@@ -37,7 +37,7 @@ class UserEndpointTest extends TestCase
         $groups = Nextcloud::provisioning()->users()->subadmins('alice');
 
         $this->assertInstanceOf(Group::class, $groups->first());
-        $this->assertEquals('GroupA', $groups->first()->name());
+        $this->assertEquals('GroupA', $groups->first()->id());
     }
 
     public function testGetUser(): void

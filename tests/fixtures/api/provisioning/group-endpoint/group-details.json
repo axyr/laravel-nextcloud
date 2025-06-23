@@ -1,0 +1,37 @@
+{
+    "ocs": {
+        "meta": {
+            "status": "ok",
+            "statuscode": 200,
+            "message": "OK"
+        },
+        "data": {
+            "groups": [
+                {
+                    "id": "GroupA",
+                    "displayname": "GroupA",
+                    "usercount": 0,
+                    "disabled": 0,
+                    "canAdd": true,
+                    "canRemove": true
+                },
+                {
+                    "id": "GroupB",
+                    "displayname": "GroupB",
+                    "usercount": 0,
+                    "disabled": 0,
+                    "canAdd": true,
+                    "canRemove": true
+                },
+                {
+                    "id": "admin",
+                    "displayname": "admin",
+                    "usercount": 1,
+                    "disabled": 0,
+                    "canAdd": true,
+                    "canRemove": true
+                }
+            ]
+        }
+    }
+}

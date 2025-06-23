@@ -3,7 +3,7 @@
 namespace Axyr\Nextcloud\Api\Provisioning;
 
 use Axyr\Nextcloud\Api\AbstractEndpoint;
-use Axyr\Nextcloud\ValueObjects\Group;
+use Axyr\Nextcloud\ValueObjects\GroupId;
 use Axyr\Nextcloud\ValueObjects\User;
 use Illuminate\Support\Collection;
 
@@ -34,7 +34,7 @@ class UserEndpoint extends AbstractEndpoint
     }
 
     /**
-     * @return Collection<Group>
+     * @return Collection<GroupId>
      */
     public function subadmins(string $userId): Collection
     {
@@ -42,7 +42,7 @@ class UserEndpoint extends AbstractEndpoint
 
         $this->throwExceptionIfNotOk($response);
 
-        return $response->collect('ocs.data')->map(fn($name) => new Group(['name' => $name]));
+        return $response->collect('ocs.data')->map(fn($id) => new GroupId(['id' => $id]));
     }
 
     public function get(string $id): User
