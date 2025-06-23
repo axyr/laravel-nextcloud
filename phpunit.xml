@@ -16,5 +16,7 @@
     </source>
     <php>
         <env name="DB_CONNECTION" value="testing"/>
+        <env name="NEXTCLOUD_USERNAME" value="admin"/>
+        <env name="NEXTCLOUD_PASSWORD" value="admin"/>
     </php>
 </phpunit>
