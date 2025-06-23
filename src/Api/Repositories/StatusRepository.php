@@ -2,7 +2,6 @@
 
 namespace Axyr\Nextcloud\Api\Repositories;
 
-use Axyr\Nextcloud\Exception\NextCloudApiException;
 use Axyr\Nextcloud\ValueObjects\Status;
 
 class StatusRepository extends Repository
@@ -11,10 +10,8 @@ class StatusRepository extends Repository
     {
         $response = $this->httpClient()->get($this->getUrl('status.php'), $options);
 
-        if ($response->ok()) {
-            return new Status($response->json());
-        }
+        $this->throwExceptionIfNotOk($response);
 
-        throw new NextCloudApiException($response->getReasonPhrase(), $response->getStatusCode());
+        return new Status($response->json());
     }
 }

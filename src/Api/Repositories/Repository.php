@@ -3,7 +3,9 @@
 namespace Axyr\Nextcloud\Api\Repositories;
 
 use Axyr\Nextcloud\Api\Api;
+use Axyr\Nextcloud\Exception\NextCloudApiException;
 use Illuminate\Http\Client\PendingRequest;
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
@@ -23,5 +25,10 @@ abstract class Repository
     public function getUrl(string $path): string
     {
         return Str::finish($this->api->config()->getBaseUrl(), '/') . $path;
+    }
+
+    public function throwExceptionIfNotOk(Response $response): void
+    {
+        throw_unless($response->ok(), new NextCloudApiException($response->getReasonPhrase(), $response->getStatusCode()));
     }
 }
