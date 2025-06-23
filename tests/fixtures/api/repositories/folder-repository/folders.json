@@ -1,0 +1,29 @@
+[
+    {
+        "id": 4,
+        "basename": "Media",
+        "children": [
+            {
+                "id": 214,
+                "basename": "Office",
+                "children": [
+                    {
+                        "id": 215,
+                        "basename": "Word",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": 213,
+                "basename": "Video",
+                "children": []
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "basename": "Templates",
+        "children": []
+    }
+]

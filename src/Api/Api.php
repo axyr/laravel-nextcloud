@@ -2,6 +2,7 @@
 
 namespace Axyr\Nextcloud\Api;
 
+use Axyr\Nextcloud\Api\Repositories\FolderTreeRepository;
 use Axyr\Nextcloud\Api\Repositories\UserRepository;
 use Axyr\Nextcloud\Contracts\ConfigInterface;
 
@@ -17,5 +18,10 @@ readonly class Api
     public function users(): UserRepository
     {
         return new UserRepository($this);
+    }
+
+    public function folderTree(): FolderTreeRepository
+    {
+        return new FolderTreeRepository($this);
     }
 }
