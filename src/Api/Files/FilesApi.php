@@ -2,12 +2,10 @@
 
 namespace Axyr\Nextcloud\Api\Files;
 
-use Axyr\Nextcloud\Api\AbstractApi;
-
-class FilesApi extends AbstractApi
+class FilesApi
 {
     public function folderTree(): FolderTreeEndpoint
     {
-        return new FolderTreeEndpoint($this->config);
+        return app(FolderTreeEndpoint::class);
     }
 }

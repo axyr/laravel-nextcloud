@@ -3,6 +3,7 @@
 namespace Axyr\Nextcloud;
 
 use Axyr\Nextcloud\Config\Config;
+use Axyr\Nextcloud\Contracts\ConfigInterface;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\ServiceProvider;
 
@@ -28,7 +29,7 @@ class NextcloudServiceProvider extends ServiceProvider
 
     protected function setUpClient(): void
     {
-        $this->app->singleton('nextcloud.config', function (Container $app) {
+        $this->app->singleton(ConfigInterface::class, function (Container $app) {
             return new Config(
                 baseUrl: $app['config']['nextcloud']['base_url'],
                 username: $app['config']['nextcloud']['username'],
@@ -38,9 +39,7 @@ class NextcloudServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton('nextcloud', function (Container $app) {
-            $client = $app['config']['nextcloud']['client'];
-
-            return new $client($app['nextcloud.config']);
+            return app($app['config']['nextcloud']['client']);
         });
     }
 }

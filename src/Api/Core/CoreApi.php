@@ -2,12 +2,10 @@
 
 namespace Axyr\Nextcloud\Api\Core;
 
-use Axyr\Nextcloud\Api\AbstractApi;
-
-class CoreApi extends AbstractApi
+class CoreApi
 {
     public function status(): StatusEndpoint
     {
-        return new StatusEndpoint($this->config);
+        return app(StatusEndpoint::class);
     }
 }

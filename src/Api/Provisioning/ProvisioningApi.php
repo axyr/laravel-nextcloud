@@ -2,17 +2,15 @@
 
 namespace Axyr\Nextcloud\Api\Provisioning;
 
-use Axyr\Nextcloud\Api\AbstractApi;
-
-class ProvisioningApi extends AbstractApi
+class ProvisioningApi
 {
     public function groups(): GroupEndpoint
     {
-        return new GroupEndpoint($this->config);
+        return app(GroupEndpoint::class);
     }
 
     public function users(): UserEndpoint
     {
-        return new UserEndpoint($this->config);
+        return app(UserEndpoint::class);
     }
 }
