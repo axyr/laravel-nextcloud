@@ -5,7 +5,9 @@ namespace Axyr\Nextcloud\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static \Axyr\Nextcloud\Api\Api api())
+ * @method static \Axyr\Nextcloud\Api\Core\CoreApi core())
+ * @method static \Axyr\Nextcloud\Api\Files\FilesApi files())
+ * @method static \Axyr\Nextcloud\Api\Provisioning\ProvisioningApi provisioning())
  */
 class Nextcloud extends Facade
 {

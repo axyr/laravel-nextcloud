@@ -1,17 +1,18 @@
 <?php
 
-namespace Axyr\Nextcloud\Api\Endpoints;
+namespace Axyr\Nextcloud\Api\Provisioning;
 
+use Axyr\Nextcloud\Api\AbstractEndpoint;
 use Axyr\Nextcloud\ValueObjects\Group;
 use Axyr\Nextcloud\ValueObjects\User;
 use Illuminate\Support\Collection;
 
-class UserEndpoint extends Endpoint
+class UserEndpoint extends AbstractEndpoint
 {
     /**
      * @return Collection<User>
      */
-    public function get(array $options = []): Collection
+    public function list(array $options = []): Collection
     {
         $response = $this->httpClient()->get($this->getUrl('ocs/v2.php/cloud/users/details'), $options);
 
@@ -44,7 +45,7 @@ class UserEndpoint extends Endpoint
         return $response->collect('ocs.data')->map(fn($name) => new Group(['name' => $name]));
     }
 
-    public function find(string $id): User
+    public function get(string $id): User
     {
         $response = $this->httpClient()->get($this->getUrl("ocs/v2.php/cloud/users/{$id}"));
 

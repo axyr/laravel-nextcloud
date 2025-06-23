@@ -1,6 +1,6 @@
 <?php
 
-namespace Axyr\Nextcloud\Tests\Api\Endpoints;
+namespace Axyr\Nextcloud\Tests\Api\Core;
 
 use Axyr\Nextcloud\Facades\Nextcloud;
 use Axyr\Nextcloud\Tests\TestCase;
@@ -9,9 +9,9 @@ class StatusEndpointTest extends TestCase
 {
     public function testGetStatus(): void
     {
-        $this->fakeHttpResponse('fixtures/api/endpoints/status-endpoint/status.json');
+        $this->fakeHttpResponse('fixtures/api/core/status.json');
 
-        $status = Nextcloud::api()->status()->get();
+        $status = Nextcloud::core()->status()->get();
 
         $this->assertTrue($status->installed());
         $this->assertFalse($status->maintenance());

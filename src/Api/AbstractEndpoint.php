@@ -1,30 +1,30 @@
 <?php
 
-namespace Axyr\Nextcloud\Api\Endpoints;
+namespace Axyr\Nextcloud\Api;
 
-use Axyr\Nextcloud\Api\Api;
+use Axyr\Nextcloud\Contracts\ConfigInterface;
 use Axyr\Nextcloud\Exception\NextCloudApiException;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
-abstract class Endpoint
+abstract class AbstractEndpoint
 {
-    public function __construct(protected readonly Api $api) {}
+    public function __construct(private readonly ConfigInterface $config) {}
 
     public function httpClient(): PendingRequest
     {
         return Http::withBasicAuth(
-            $this->api->config()->getUsername(),
-            $this->api->config()->getPassword(),
+            $this->config->getUsername(),
+            $this->config->getPassword(),
         )
-            ->withHeaders($this->api->config()->getDefaultHeaders());
+            ->withHeaders($this->config->getDefaultHeaders());
     }
 
     public function getUrl(string $path): string
     {
-        return Str::finish($this->api->config()->getBaseUrl(), '/') . $path;
+        return Str::finish($this->config->getBaseUrl(), '/') . $path;
     }
 
     public function throwExceptionIfNotOk(Response $response): void

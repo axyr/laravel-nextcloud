@@ -1,10 +1,11 @@
 <?php
 
-namespace Axyr\Nextcloud\Api\Endpoints;
+namespace Axyr\Nextcloud\Api\Core;
 
+use Axyr\Nextcloud\Api\AbstractEndpoint;
 use Axyr\Nextcloud\ValueObjects\Status;
 
-class StatusEndpoint extends Endpoint
+class StatusEndpoint extends AbstractEndpoint
 {
     public function get(array $options = []): Status
     {

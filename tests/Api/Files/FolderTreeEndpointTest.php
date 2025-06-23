@@ -1,6 +1,6 @@
 <?php
 
-namespace Axyr\Nextcloud\Tests\Api\Endpoints;
+namespace Axyr\Nextcloud\Tests\Api\Files;
 
 use Axyr\Nextcloud\Facades\Nextcloud;
 use Axyr\Nextcloud\Tests\TestCase;
@@ -10,9 +10,9 @@ class FolderTreeEndpointTest extends TestCase
 {
     public function testGetFolders(): void
     {
-        $this->fakeHttpResponse('fixtures/api/endpoints/folder-endpoint/folders.json');
+        $this->fakeHttpResponse('fixtures/api/files/folders.json');
 
-        $folders = Nextcloud::api()->folderTree()->get([
+        $folders = Nextcloud::files()->folderTree()->list([
             'depth' => 10,
         ]);
 

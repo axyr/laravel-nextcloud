@@ -1,16 +1,17 @@
 <?php
 
-namespace Axyr\Nextcloud\Api\Endpoints;
+namespace Axyr\Nextcloud\Api\Files;
 
+use Axyr\Nextcloud\Api\AbstractEndpoint;
 use Axyr\Nextcloud\ValueObjects\Folder;
 use Illuminate\Support\Collection;
 
-class FolderTreeEndpoint extends Endpoint
+class FolderTreeEndpoint extends AbstractEndpoint
 {
     /**
      * @return Collection<Folder>
      */
-    public function get(array $options = []): Collection
+    public function list(array $options = []): Collection
     {
         $response = $this->httpClient()->get($this->getUrl('ocs/v2.php/apps/files/api/v1/folder-tree'), $options);
 
