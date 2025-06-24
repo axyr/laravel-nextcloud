@@ -18,4 +18,9 @@ class CoreApi
     {
         return app(StatusEndpoint::class);
     }
+
+    public function appPassword(): AppPasswordEndpoint
+    {
+        return app(AppPasswordEndpoint::class);
+    }
 }
