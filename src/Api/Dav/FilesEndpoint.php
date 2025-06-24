@@ -25,4 +25,23 @@ class FilesEndpoint extends AbstractEndpoint
 
         return collect(WebDavXmlParser::parse($xml))->mapInto(Resource::class);
     }
+
+    public function downloadFile(string $path): string
+    {
+        $response = $this->dav
+            ->forNamespace(WebDavNamespace::Files)
+            ->get($path);
+
+        return $response->body();
+    }
+
+    public function downloadFolder(string $path): string
+    {
+        $response = $this->dav
+            ->withHeaders(['Accept' => 'application/zip'])
+            ->forNamespace(WebDavNamespace::Files)
+            ->get($path);
+
+        return $response->body();
+    }
 }

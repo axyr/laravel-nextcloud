@@ -24,7 +24,6 @@ class WebDavClient
             $this->config->getUsername(),
             $this->config->getPassword()
         )
-            ->baseUrl($this->getBaseUrl())
             ->withHeaders([
                 'Content-Type' => 'application/xml',
             ]);
@@ -35,7 +34,7 @@ class WebDavClient
         return $this->client;
     }
 
-    public function forNamespace(WebDavNamespace $namespace): static
+    public function forNamespace(?WebDavNamespace $namespace = null): static
     {
         $this->namespace = $namespace;
 
@@ -49,78 +48,81 @@ class WebDavClient
         return $this;
     }
 
-    protected function getBaseUrl(): string
+    public function withHeaders(array $headers = []): static
     {
-        return Str::finish($this->config->getBaseUrl(), '/') . Str::finish($this->config->getWebDavEntryPoint(), '/');
+        $this->client->withHeaders($headers);
+
+        return $this;
     }
 
-    protected function fullPath(?string $path = null): string
+    public function getFullPath(?string $path = null): string
     {
-        if ($this->namespace) {
-            return $this->namespace->value . '/' . $this->config->getUsername() . '/' . ltrim((string)$path, '/');
+        $webDavEntryPoint = Str::finish($this->config->getWebDavEntryPoint(), '/');
+
+        if (Str::contains($path, $webDavEntryPoint)) {
+            return $this->getFullUrl($path);
         }
 
-        return ltrim((string)$path, '/');
+        if ($this->namespace) {
+            $path = $this->namespace->value . '/' . $this->config->getUsername() . '/' . ltrim((string)$path, '/');
+        }
+
+        return $this->getFullUrl(Str::finish($this->config->getWebDavEntryPoint(), '/') . $path);
     }
 
-    public function propFind(?string $path = null, string $body = '', array $headers = []): Response
+    protected function getFullUrl(?string $path = null): string
     {
-        $headers = array_merge([
-            'Depth' => $this->depth->value,
-        ], $headers);
-
-        return $this->client
-            ->withHeaders($headers)
-            ->send('PROPFIND', $this->fullPath($path), ['body' => $body]);
+        return $this->getBaseUrl() . ltrim((string)$path, '/');
     }
 
-    public function createDirectory(string $path, array $headers = []): Response
+    protected function getBaseUrl(): string
     {
-        return $this->client
-            ->withHeaders($headers)
-            ->send('MKCOL', $this->fullPath($path));
+        return Str::finish($this->config->getBaseUrl(), '/');
     }
 
-    public function put(string $path, string $content, array $headers = []): Response
+    public function propFind(?string $path = null, string $body = '', array $options = []): Response
     {
         return $this->client
-            ->withHeaders($headers)
-            ->send('PUT', $this->fullPath($path), ['body' => $content]);
+            ->withHeaders(['Depth' => $this->depth->value])
+            ->send('PROPFIND', $this->getFullPath($path), ['body' => $body]);
     }
 
-    public function move(string $source, string $destination, array $headers = []): Response
+    public function createDirectory(string $path): Response
     {
-        return $this->client
-            ->withHeaders(
-                array_merge([
-                    'Destination' => $this->fullPath($destination),
-                ], $headers)
-            )
-            ->send('MOVE', $this->fullPath($source));
+        return $this->client->send('MKCOL', $this->getFullPath($path));
     }
 
-    public function delete(string $path, array $headers = []): Response
+    public function put(string $path, string $content): Response
     {
-        return $this->client
-            ->withHeaders($headers)
-            ->send('DELETE', $this->fullPath($path));
+        return $this->client->send('PUT', $this->getFullPath($path), ['body' => $content]);
     }
 
-    public function copy(string $source, string $destination, array $headers = []): Response
+    public function move(string $source, string $destination): Response
     {
         return $this->client
-            ->withHeaders(
-                array_merge([
-                    'Destination' => $this->fullPath($destination),
-                ], $headers)
-            )
-            ->send('COPY', $this->fullPath($source));
+            ->withHeaders(['Destination' => $this->getFullPath($destination)])
+            ->send('MOVE', $this->getFullPath($source));
     }
 
-    public function lock(string $path, string $body = '', array $headers = []): Response
+    public function get(string $path): Response
+    {
+        return $this->client->send('GET', $this->getFullPath($path));
+    }
+
+    public function delete(string $path): Response
+    {
+        return $this->client->send('DELETE', $this->getFullPath($path));
+    }
+
+    public function copy(string $source, string $destination): Response
     {
         return $this->client
-            ->withHeaders($headers)
-            ->send('LOCK', $this->fullPath($path), ['body' => $body]);
+            ->withHeaders(['Destination' => $this->getFullPath($destination)])
+            ->send('COPY', $this->getFullPath($source));
+    }
+
+    public function lock(string $path, string $body = ''): Response
+    {
+        return $this->client->send('LOCK', $this->getFullPath($path), ['body' => $body]);
     }
 }
