@@ -1,0 +1,36 @@
+{
+    "ocs": {
+        "meta": {
+            "status": "ok",
+            "statuscode": 200,
+            "message": "OK"
+        },
+        "data": {
+            "userId": "admin",
+            "address": "Den Haag",
+            "isUserAvatarVisible": true,
+            "biography": null,
+            "displayname": "admin",
+            "headline": null,
+            "organisation": null,
+            "role": null,
+            "pronouns": null,
+            "actions": [
+                {
+                    "id": "email",
+                    "icon": "http:\/\/nextcloud.local\/core\/img\/actions\/mail.svg",
+                    "title": "Mail some@email.com",
+                    "target": "mailto:some@email.com"
+                },
+                {
+                    "id": "phone",
+                    "icon": "http:\/\/nextcloud.local\/core\/img\/actions\/phone.svg",
+                    "title": "Bel +31612345678",
+                    "target": "tel:+31612345678"
+                }
+            ],
+            "timezone": "Europe\/Amsterdam",
+            "timezoneOffset": 7200
+        }
+    }
+}

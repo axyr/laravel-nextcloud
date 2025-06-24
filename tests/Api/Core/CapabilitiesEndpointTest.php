@@ -12,7 +12,7 @@ class CapabilitiesEndpointTest extends TestCase
     {
         $this->fakeHttpResponse('fixtures/api/core/capabilities.json');
 
-        $result = Nextcloud::core()->capabilities()->get();
+        $result = Nextcloud::core()->capabilities()->list();
 
         $this->assertEquals('32.0.0 dev', $result->version()->string());
 

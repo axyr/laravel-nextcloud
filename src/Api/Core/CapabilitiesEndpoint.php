@@ -7,7 +7,7 @@ use Axyr\Nextcloud\ValueObjects\Capabilities;
 
 class CapabilitiesEndpoint extends AbstractEndpoint
 {
-    public function get(array $options = []): Capabilities
+    public function list(array $options = []): Capabilities
     {
         $response = $this->apiGet('/ocs/v2.php/cloud/capabilities', $options);
 

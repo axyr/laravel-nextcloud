@@ -39,4 +39,8 @@ class CoreApi
         return app(CapabilitiesEndpoint::class);
     }
 
+    public function profile(): ProfileEndpoint
+    {
+        return app(ProfileEndpoint::class);
+    }
 }
