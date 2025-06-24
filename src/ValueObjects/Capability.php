@@ -6,7 +6,7 @@ class Capability extends ValueObject
 {
     public function capability(): string
     {
-        return (string)$this->getValue('capability'); // core, bruteforce, etc, the keys of the array
+        return (string)$this->getValue('capability');
     }
 
     public function attributes(): array
