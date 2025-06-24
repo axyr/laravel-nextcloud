@@ -21,7 +21,7 @@ class WebDavClientTest extends TestCase
     {
         return [
             [
-                'namespace' => null,
+                'namespace' => WebDavNamespace::None,
                 'path' => 'test',
                 'expectedFullUrl' => 'http://nextcloud.local/remote.php/dav/test',
             ],

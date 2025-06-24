@@ -2,7 +2,6 @@
 
 namespace Axyr\Nextcloud\Api\Dav;
 
-use Axyr\Nextcloud\Api\AbstractEndpoint;
 use Axyr\Nextcloud\Enums\Depth;
 use Axyr\Nextcloud\Enums\Favorite;
 use Axyr\Nextcloud\Enums\Overwrite;
@@ -11,17 +10,19 @@ use Axyr\Nextcloud\Parsers\WebDavXmlParser;
 use Axyr\Nextcloud\ValueObjects\Dav\Resource;
 use Illuminate\Support\Collection;
 
-class FilesEndpoint extends AbstractEndpoint
+class FilesEndpoint extends AbstractDavEndpoint
 {
+    public function webDavNamespace(): WebDavNamespace
+    {
+        return WebDavNamespace::Files;
+    }
+
     /**
      * @return Collection<Resource>
      */
     public function list(?string $path = null, Depth $depth = Depth::Infinity): Collection
     {
-        $response = $this->dav
-            ->forNamespace(WebDavNamespace::Files)
-            ->withDepth($depth)
-            ->propFind($path);
+        $response = $this->client->withDepth($depth)->propFind($path);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -30,9 +31,7 @@ class FilesEndpoint extends AbstractEndpoint
 
     public function downloadFile(string $path): string
     {
-        $response = $this->dav
-            ->forNamespace(WebDavNamespace::Files)
-            ->get($path);
+        $response = $this->client->get($path);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -41,10 +40,7 @@ class FilesEndpoint extends AbstractEndpoint
 
     public function downloadFolder(string $path): string
     {
-        $response = $this->dav
-            ->withHeaders(['Accept' => 'application/zip'])
-            ->forNamespace(WebDavNamespace::Files)
-            ->get($path);
+        $response = $this->client->withHeaders(['Accept' => 'application/zip'])->get($path);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -53,9 +49,7 @@ class FilesEndpoint extends AbstractEndpoint
 
     public function createFolder(string $path): bool
     {
-        $response = $this->dav
-            ->forNamespace(WebDavNamespace::Files)
-            ->createDirectory($path);
+        $response = $this->client->createDirectory($path);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -64,9 +58,7 @@ class FilesEndpoint extends AbstractEndpoint
 
     public function delete(string $path): bool
     {
-        $response = $this->dav
-            ->forNamespace(WebDavNamespace::Files)
-            ->delete($path);
+        $response = $this->client->delete($path);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -75,9 +67,7 @@ class FilesEndpoint extends AbstractEndpoint
 
     public function move(string $source, string $destination, Overwrite $overwrite = Overwrite::No): bool
     {
-        $response = $this->dav
-            ->forNamespace(WebDavNamespace::Files)
-            ->move($source, $destination, $overwrite);
+        $response = $this->client->move($source, $destination, $overwrite);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -86,9 +76,7 @@ class FilesEndpoint extends AbstractEndpoint
 
     public function copy(string $source, string $destination, Overwrite $overwrite = Overwrite::No): bool
     {
-        $response = $this->dav
-            ->forNamespace(WebDavNamespace::Files)
-            ->copy($source, $destination, $overwrite);
+        $response = $this->client->copy($source, $destination, $overwrite);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -99,9 +87,7 @@ class FilesEndpoint extends AbstractEndpoint
     {
         $body = '<?xml version="1.0"?><oc:filter-files xmlns:d="DAV:" xmlns:oc="http://owncloud.org/ns" xmlns:nc="http://nextcloud.org/ns"><oc:filter-rules><oc:favorite>1</oc:favorite></oc:filter-rules></oc:filter-files>';
 
-        $response = $this->dav
-            ->forNamespace(WebDavNamespace::Files)
-            ->report($body);
+        $response = $this->client->report($body);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -122,12 +108,11 @@ class FilesEndpoint extends AbstractEndpoint
     {
         $body = '<?xml version="1.0"?><d:propertyupdate xmlns:d="DAV:" xmlns:oc="http://owncloud.org/ns"><d:set><d:prop><oc:favorite>' . $favorite->value . '</oc:favorite></d:prop></d:set></d:propertyupdate>';
 
-        $response = $this->dav
-            ->forNamespace(WebDavNamespace::Files)
-            ->propPatch($path, $body);
+        $response = $this->client->propPatch($path, $body);
 
         $this->throwExceptionIfNotOk($response);
 
         return true;
     }
+
 }

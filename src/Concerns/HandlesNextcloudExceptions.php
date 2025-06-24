@@ -1,24 +1,15 @@
 <?php
 
-namespace Axyr\Nextcloud\Api;
+namespace Axyr\Nextcloud\Concerns;
 
-use Axyr\Nextcloud\Clients\HttpClient;
-use Axyr\Nextcloud\Clients\WebDavClient;
-use Axyr\Nextcloud\Contracts\ConfigInterface;
 use Axyr\Nextcloud\Exception\NextCloudApiException;
 use Axyr\Nextcloud\Parsers\WebDavXmlParser;
 use Axyr\Nextcloud\ValueObjects\InvalidRequest;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Str;
 
-abstract class AbstractEndpoint
+trait HandlesNextcloudExceptions
 {
-    public function __construct(
-        protected ConfigInterface $config,
-        protected readonly HttpClient $http,
-        protected readonly WebDavClient $dav
-    ) {}
-
     protected function throwExceptionIfNotOk(Response $response): void
     {
         if ( ! $this->isOk($response)) {

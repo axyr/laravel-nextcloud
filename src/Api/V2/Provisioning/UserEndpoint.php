@@ -2,7 +2,7 @@
 
 namespace Axyr\Nextcloud\Api\V2\Provisioning;
 
-use Axyr\Nextcloud\Api\AbstractEndpoint;
+use Axyr\Nextcloud\Api\V2\AbstractHttpEndpoint;
 use Axyr\Nextcloud\Requests\UserCreateRequest;
 use Axyr\Nextcloud\ValueObjects\AppId;
 use Axyr\Nextcloud\ValueObjects\Field;
@@ -11,14 +11,14 @@ use Axyr\Nextcloud\ValueObjects\User;
 use Axyr\Nextcloud\ValueObjects\UserId;
 use Illuminate\Support\Collection;
 
-class UserEndpoint extends AbstractEndpoint
+class UserEndpoint extends AbstractHttpEndpoint
 {
     /**
      * @return Collection<User>
      */
     public function recent(array $options = []): Collection
     {
-        $response = $this->http->get('ocs/v2.php/cloud/users/recent', $options);
+        $response = $this->client->get('ocs/v2.php/cloud/users/recent', $options);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -30,7 +30,7 @@ class UserEndpoint extends AbstractEndpoint
      */
     public function subadmins(string $userId): Collection
     {
-        $response = $this->http->get("ocs/v2.php/cloud/users/{$userId}/subadmins");
+        $response = $this->client->get("ocs/v2.php/cloud/users/{$userId}/subadmins");
 
         $this->throwExceptionIfNotOk($response);
 
@@ -39,7 +39,7 @@ class UserEndpoint extends AbstractEndpoint
 
     public function addSubadminToGroup(string $userId, string $groupId): bool
     {
-        $response = $this->http->post("ocs/v2.php/cloud/users/{$userId}/subadmins", [
+        $response = $this->client->post("ocs/v2.php/cloud/users/{$userId}/subadmins", [
             'groupid' => $groupId,
         ]);
 
@@ -50,7 +50,7 @@ class UserEndpoint extends AbstractEndpoint
 
     public function removeSubadminFromGroup(string $userId, string $groupId): bool
     {
-        $response = $this->http->delete("ocs/v2.php/cloud/users/{$userId}/subadmins", [
+        $response = $this->client->delete("ocs/v2.php/cloud/users/{$userId}/subadmins", [
             'groupid' => $groupId,
         ]);
 
@@ -64,7 +64,7 @@ class UserEndpoint extends AbstractEndpoint
      */
     public function list(array $options = []): Collection
     {
-        $response = $this->http->get('ocs/v2.php/cloud/users', $options);
+        $response = $this->client->get('ocs/v2.php/cloud/users', $options);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -73,7 +73,7 @@ class UserEndpoint extends AbstractEndpoint
 
     public function create(UserCreateRequest $request): UserId
     {
-        $response = $this->http->post('ocs/v2.php/cloud/users', $request->toArray());
+        $response = $this->client->post('ocs/v2.php/cloud/users', $request->toArray());
 
         $this->throwExceptionIfNotOk($response);
 
@@ -85,7 +85,7 @@ class UserEndpoint extends AbstractEndpoint
      */
     public function listDetails(array $options = []): Collection
     {
-        $response = $this->http->get('ocs/v2.php/cloud/users/details', $options);
+        $response = $this->client->get('ocs/v2.php/cloud/users/details', $options);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -97,7 +97,7 @@ class UserEndpoint extends AbstractEndpoint
      */
     public function listDisabledDetails(array $options = []): Collection
     {
-        $response = $this->http->get('ocs/v2.php/cloud/users/disabled', $options);
+        $response = $this->client->get('ocs/v2.php/cloud/users/disabled', $options);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -106,7 +106,7 @@ class UserEndpoint extends AbstractEndpoint
 
     public function searchByPhone(string $location, array $search): Collection
     {
-        $response = $this->http->get('ocs/v2.php/cloud/users/search/by-phone', [
+        $response = $this->client->get('ocs/v2.php/cloud/users/search/by-phone', [
             'location' => $location,
             'search' => $search,
         ]);
@@ -118,7 +118,7 @@ class UserEndpoint extends AbstractEndpoint
 
     public function get(?string $id = null): User
     {
-        $response = $id ? $this->http->get("ocs/v2.php/cloud/users/{$id}") : $this->http->get("ocs/v2.php/cloud/user");
+        $response = $id ? $this->client->get("ocs/v2.php/cloud/users/{$id}") : $this->client->get("ocs/v2.php/cloud/user");
 
         $this->throwExceptionIfNotOk($response);
 
@@ -127,7 +127,7 @@ class UserEndpoint extends AbstractEndpoint
 
     public function fields(?string $id = null): Collection
     {
-        $response = $id ? $this->http->get("ocs/v2.php/cloud/user/fields/{$id}") : $this->http->get("ocs/v2.php/cloud/user/fields");
+        $response = $id ? $this->client->get("ocs/v2.php/cloud/user/fields/{$id}") : $this->client->get("ocs/v2.php/cloud/user/fields");
 
         $this->throwExceptionIfNotOk($response);
 
@@ -136,7 +136,7 @@ class UserEndpoint extends AbstractEndpoint
 
     public function apps(): Collection
     {
-        $response = $this->http->get("ocs/v2.php/cloud/user/apps");
+        $response = $this->client->get("ocs/v2.php/cloud/user/apps");
 
         $this->throwExceptionIfNotOk($response);
 
@@ -145,7 +145,7 @@ class UserEndpoint extends AbstractEndpoint
 
     public function update(string $id, string $key, mixed $value): bool
     {
-        $response = $this->http->put("ocs/v2.php/cloud/users/{$id}", [
+        $response = $this->client->put("ocs/v2.php/cloud/users/{$id}", [
             'key' => $key,
             'value' => $value,
         ]);
@@ -157,7 +157,7 @@ class UserEndpoint extends AbstractEndpoint
 
     public function delete(string $id): bool
     {
-        $response = $this->http->delete("ocs/v2.php/cloud/users/{$id}");
+        $response = $this->client->delete("ocs/v2.php/cloud/users/{$id}");
 
         $this->throwExceptionIfNotOk($response);
 
@@ -166,7 +166,7 @@ class UserEndpoint extends AbstractEndpoint
 
     public function enable(string $id): bool
     {
-        $response = $this->http->put("ocs/v2.php/cloud/users/{$id}/enable");
+        $response = $this->client->put("ocs/v2.php/cloud/users/{$id}/enable");
 
         $this->throwExceptionIfNotOk($response);
 
@@ -175,7 +175,7 @@ class UserEndpoint extends AbstractEndpoint
 
     public function disable(string $id): bool
     {
-        $response = $this->http->put("ocs/v2.php/cloud/users/{$id}/disable");
+        $response = $this->client->put("ocs/v2.php/cloud/users/{$id}/disable");
 
         $this->throwExceptionIfNotOk($response);
 

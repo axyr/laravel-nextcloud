@@ -4,6 +4,7 @@ namespace Axyr\Nextcloud\Enums;
 
 enum WebDavNamespace: string
 {
+    case None = '';
     case Files = 'files';
     case Principals = 'principals';
     case Calendars = 'calendars';

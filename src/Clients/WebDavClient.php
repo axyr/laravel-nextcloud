@@ -64,7 +64,7 @@ class WebDavClient
             return $this->getFullUrl($path);
         }
 
-        if ($this->namespace) {
+        if ($this->namespace !== WebDavNamespace::None) {
             $path = $this->namespace->value . '/' . $this->config->getUsername() . '/' . ltrim((string)$path, '/');
         }
 

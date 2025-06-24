@@ -2,19 +2,19 @@
 
 namespace Axyr\Nextcloud\Api\V2\Provisioning;
 
-use Axyr\Nextcloud\Api\AbstractEndpoint;
+use Axyr\Nextcloud\Api\V2\AbstractHttpEndpoint;
 use Axyr\Nextcloud\ValueObjects\App;
 use Axyr\Nextcloud\ValueObjects\AppId;
 use Illuminate\Support\Collection;
 
-class AppEndpoint extends AbstractEndpoint
+class AppEndpoint extends AbstractHttpEndpoint
 {
     /**
      * @return Collection<AppId>
      */
     public function list(array $options = []): Collection
     {
-        $response = $this->http->get('ocs/v2.php/cloud/apps', $options);
+        $response = $this->client->get('ocs/v2.php/cloud/apps', $options);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -23,7 +23,7 @@ class AppEndpoint extends AbstractEndpoint
 
     public function get(string $id): App
     {
-        $response = $this->http->get("ocs/v2.php/cloud/apps/{$id}");
+        $response = $this->client->get("ocs/v2.php/cloud/apps/{$id}");
 
         $this->throwExceptionIfNotOk($response);
 
@@ -32,7 +32,7 @@ class AppEndpoint extends AbstractEndpoint
 
     public function enable(string $id): bool
     {
-        $response = $this->http->post("ocs/v2.php/cloud/apps/{$id}");
+        $response = $this->client->post("ocs/v2.php/cloud/apps/{$id}");
 
         $this->throwExceptionIfNotOk($response);
 
@@ -41,7 +41,7 @@ class AppEndpoint extends AbstractEndpoint
 
     public function disable(string $id): bool
     {
-        $response = $this->http->delete("ocs/v2.php/cloud/apps/{$id}");
+        $response = $this->client->delete("ocs/v2.php/cloud/apps/{$id}");
 
         $this->throwExceptionIfNotOk($response);
 

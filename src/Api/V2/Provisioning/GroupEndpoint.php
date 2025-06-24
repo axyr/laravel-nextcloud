@@ -2,21 +2,21 @@
 
 namespace Axyr\Nextcloud\Api\V2\Provisioning;
 
-use Axyr\Nextcloud\Api\AbstractEndpoint;
+use Axyr\Nextcloud\Api\V2\AbstractHttpEndpoint;
 use Axyr\Nextcloud\ValueObjects\Group;
 use Axyr\Nextcloud\ValueObjects\GroupId;
 use Axyr\Nextcloud\ValueObjects\User;
 use Axyr\Nextcloud\ValueObjects\UserId;
 use Illuminate\Support\Collection;
 
-class GroupEndpoint extends AbstractEndpoint
+class GroupEndpoint extends AbstractHttpEndpoint
 {
     /**
      * @return Collection<UserId>
      */
     public function subadmins(string $groupId): Collection
     {
-        $response = $this->http->get("ocs/v2.php/cloud/groups/{$groupId}/subadmins");
+        $response = $this->client->get("ocs/v2.php/cloud/groups/{$groupId}/subadmins");
 
         $this->throwExceptionIfNotOk($response);
 
@@ -25,7 +25,7 @@ class GroupEndpoint extends AbstractEndpoint
 
     public function create(array $data): bool
     {
-        $response = $this->http->post('ocs/v2.php/cloud/groups', $data);
+        $response = $this->client->post('ocs/v2.php/cloud/groups', $data);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -37,7 +37,7 @@ class GroupEndpoint extends AbstractEndpoint
      */
     public function list(array $options = []): Collection
     {
-        $response = $this->http->get('ocs/v2.php/cloud/groups', $options);
+        $response = $this->client->get('ocs/v2.php/cloud/groups', $options);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -49,7 +49,7 @@ class GroupEndpoint extends AbstractEndpoint
      */
     public function listDetails(array $options = []): Collection
     {
-        $response = $this->http->get('ocs/v2.php/cloud/groups/details', $options);
+        $response = $this->client->get('ocs/v2.php/cloud/groups/details', $options);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -58,7 +58,7 @@ class GroupEndpoint extends AbstractEndpoint
 
     public function update(string $groupId, string $displayname): bool
     {
-        $response = $this->http->put("ocs/v2.php/cloud/groups/{$groupId}", [
+        $response = $this->client->put("ocs/v2.php/cloud/groups/{$groupId}", [
             'key' => 'displayname',
             'value' => $displayname,
         ]);
@@ -70,7 +70,7 @@ class GroupEndpoint extends AbstractEndpoint
 
     public function delete(string $groupId): bool
     {
-        $response = $this->http->delete("ocs/v2.php/cloud/groups/{$groupId}");
+        $response = $this->client->delete("ocs/v2.php/cloud/groups/{$groupId}");
 
         $this->throwExceptionIfNotOk($response);
 
@@ -82,7 +82,7 @@ class GroupEndpoint extends AbstractEndpoint
      */
     public function users(string $groupId): Collection
     {
-        $response = $this->http->get("ocs/v2.php/cloud/groups/{$groupId}/users");
+        $response = $this->client->get("ocs/v2.php/cloud/groups/{$groupId}/users");
 
         $this->throwExceptionIfNotOk($response);
 
@@ -94,7 +94,7 @@ class GroupEndpoint extends AbstractEndpoint
      */
     public function userDetails(string $groupId): Collection
     {
-        $response = $this->http->get("ocs/v2.php/cloud/groups/{$groupId}/users/details");
+        $response = $this->client->get("ocs/v2.php/cloud/groups/{$groupId}/users/details");
 
         $this->throwExceptionIfNotOk($response);
 

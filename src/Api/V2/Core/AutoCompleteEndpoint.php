@@ -2,11 +2,11 @@
 
 namespace Axyr\Nextcloud\Api\V2\Core;
 
-use Axyr\Nextcloud\Api\AbstractEndpoint;
+use Axyr\Nextcloud\Api\V2\AbstractHttpEndpoint;
 use Axyr\Nextcloud\ValueObjects\AutoCompleteResult;
 use Illuminate\Support\Collection;
 
-class AutoCompleteEndpoint extends AbstractEndpoint
+class AutoCompleteEndpoint extends AbstractHttpEndpoint
 {
     public function get(string $search, ?string $itemType = null, ?string $itemId = null, ?array $shareTypes = null, int $limit = 10): Collection
     {
@@ -23,7 +23,7 @@ class AutoCompleteEndpoint extends AbstractEndpoint
             }
         }
 
-        $response = $this->http->get('/ocs/v2.php/core/autocomplete/get', $query);
+        $response = $this->client->get('/ocs/v2.php/core/autocomplete/get', $query);
 
         $this->throwExceptionIfNotOk($response);
 

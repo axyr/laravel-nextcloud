@@ -2,25 +2,28 @@
 
 namespace Axyr\Nextcloud\Api\Dav;
 
-use Axyr\Nextcloud\Api\AbstractEndpoint;
 use Axyr\Nextcloud\Enums\Depth;
+use Axyr\Nextcloud\Enums\WebDavNamespace;
 use Axyr\Nextcloud\Parsers\WebDavXmlParser;
 use Axyr\Nextcloud\ValueObjects\Dav\Resource;
 use Illuminate\Support\Collection;
 
-class NamespacesEndpoint extends AbstractEndpoint
+class NamespacesEndpoint extends AbstractDavEndpoint
 {
+    public function webDavNamespace(): WebDavNamespace
+    {
+        return WebDavNamespace::None;
+    }
+
     /**
      * @return Collection<Resource>
      */
     public function list(): Collection
     {
-        $response = $this->dav
-            ->withDepth(Depth::One)
-            ->propFind();
+        $response = $this->client->withDepth(Depth::One)->propFind();
 
-        $xml = $response->getBody()->getContents();
+        $this->throwExceptionIfNotOk($response);
 
-        return collect(WebDavXmlParser::parse($xml))->mapInto(Resource::class);
+        return collect(WebDavXmlParser::parse($response->body()))->mapInto(Resource::class);
     }
 }

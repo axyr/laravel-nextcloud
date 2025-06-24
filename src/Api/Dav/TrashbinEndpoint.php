@@ -2,7 +2,6 @@
 
 namespace Axyr\Nextcloud\Api\Dav;
 
-use Axyr\Nextcloud\Api\AbstractEndpoint;
 use Axyr\Nextcloud\Enums\Depth;
 use Axyr\Nextcloud\Enums\Overwrite;
 use Axyr\Nextcloud\Enums\WebDavNamespace;
@@ -10,17 +9,19 @@ use Axyr\Nextcloud\Parsers\WebDavXmlParser;
 use Axyr\Nextcloud\ValueObjects\Dav\Resource;
 use Illuminate\Support\Collection;
 
-class TrashbinEndpoint extends AbstractEndpoint
+class TrashbinEndpoint extends AbstractDavEndpoint
 {
+    public function webDavNamespace(): WebDavNamespace
+    {
+        return WebDavNamespace::Trashbin;
+    }
+
     /**
      * @return Collection<Resource>
      */
     public function list(Depth $depth = Depth::Infinity): Collection
     {
-        $response = $this->dav
-            ->forNamespace(WebDavNamespace::Trashbin)
-            ->withDepth($depth)
-            ->propFind('trash');
+        $response = $this->client->withDepth($depth)->propFind('trash');
 
         $this->throwExceptionIfNotOk($response);
 
@@ -31,9 +32,7 @@ class TrashbinEndpoint extends AbstractEndpoint
     {
         $filename = basename($path);
 
-        $response = $this->dav
-            ->forNamespace(WebDavNamespace::Trashbin)
-            ->move("trash/{$filename}", "restore/{$filename}", $overwrite);
+        $response = $this->client->move("trash/{$filename}", "restore/{$filename}", $overwrite);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -42,9 +41,7 @@ class TrashbinEndpoint extends AbstractEndpoint
 
     public function delete(string $path): bool
     {
-        $response = $this->dav
-            ->forNamespace(WebDavNamespace::Trashbin)
-            ->delete($path);
+        $response = $this->client->delete($path);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -53,9 +50,7 @@ class TrashbinEndpoint extends AbstractEndpoint
 
     public function empty(): bool
     {
-        $response = $this->dav
-            ->forNamespace(WebDavNamespace::Trashbin)
-            ->delete('trash');
+        $response = $this->client->delete('trash');
 
         $this->throwExceptionIfNotOk($response);
 
