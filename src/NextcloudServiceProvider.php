@@ -32,9 +32,9 @@ class NextcloudServiceProvider extends ServiceProvider
         $this->app->singleton(ConfigInterface::class, function (Container $app) {
             return new Config(
                 baseUrl: $app['config']['nextcloud']['base_url'],
+                webDavEntryPoint: $app['config']['nextcloud']['web_dav_entry_point'],
                 username: $app['config']['nextcloud']['username'],
-                password: $app['config']['nextcloud']['password'],
-                defaultHeaders: $app['config']['nextcloud']['default_headers'],
+                password: $app['config']['nextcloud']['password']
             );
         });
 

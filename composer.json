@@ -2,7 +2,13 @@
     "name": "axyr/laravel-nextcloud",
     "description": "Laravel Nextcloud client",
     "type": "library",
-    "keywords": ["laravel", "module", "nexcloud", "api", "client"],
+    "keywords": [
+        "laravel",
+        "module",
+        "nexcloud",
+        "api",
+        "client"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -22,7 +28,9 @@
     },
     "require": {
         "php": "^8.2",
-        "laravel/framework": "^12.0"
+        "laravel/framework": "^12.0",
+        "sabre/dav": "^4.7",
+        "ext-simplexml": "*"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",

@@ -1,0 +1,236 @@
+<?xml version="1.0"?>
+<d:multistatus xmlns:d="DAV:">
+    <d:response>
+        <d:href>/remote.php/dav/files/admin/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Tue, 24 Jun 2025 10:45:48 GMT</d:getlastmodified>
+                <d:resourcetype>
+                    <d:collection/>
+                </d:resourcetype>
+                <d:quota-used-bytes>20590077</d:quota-used-bytes>
+                <d:quota-available-bytes>-3</d:quota-available-bytes>
+                <d:getetag>&quot;685a81dcaac59&quot;</d:getetag>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/files/admin/Media/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Mon, 23 Jun 2025 12:05:12 GMT</d:getlastmodified>
+                <d:resourcetype>
+                    <d:collection/>
+                </d:resourcetype>
+                <d:quota-used-bytes>11753647</d:quota-used-bytes>
+                <d:quota-available-bytes>-3</d:quota-available-bytes>
+                <d:getetag>&quot;685942f906d90&quot;</d:getetag>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/files/admin/Media/Big_Buck_Bunny_1080_10s_10MB.mkv</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Sun, 22 Jun 2025 08:38:23 GMT</d:getlastmodified>
+                <d:getcontentlength>9622692</d:getcontentlength>
+                <d:resourcetype/>
+                <d:getetag>&quot;abc61ed822ff507a14401395663e15c6&quot;</d:getetag>
+                <d:getcontenttype>video/x-matroska</d:getcontenttype>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/files/admin/Media/Office/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Mon, 23 Jun 2025 12:05:12 GMT</d:getlastmodified>
+                <d:resourcetype>
+                    <d:collection/>
+                </d:resourcetype>
+                <d:quota-used-bytes>1157</d:quota-used-bytes>
+                <d:quota-available-bytes>-3</d:quota-available-bytes>
+                <d:getetag>&quot;685942f906d90&quot;</d:getetag>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/files/admin/Media/Office/Screenshot%202025-06-20%20at%2013.49.08.png</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Fri, 20 Jun 2025 11:49:14 GMT</d:getlastmodified>
+                <d:getcontentlength>1157</d:getcontentlength>
+                <d:resourcetype/>
+                <d:getetag>&quot;0c76e9ee0d42565762e90fc8a0603486&quot;</d:getetag>
+                <d:getcontenttype>image/png</d:getcontenttype>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/files/admin/Media/Video/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Mon, 23 Jun 2025 12:04:10 GMT</d:getlastmodified>
+                <d:resourcetype>
+                    <d:collection/>
+                </d:resourcetype>
+                <d:quota-used-bytes>0</d:quota-used-bytes>
+                <d:quota-available-bytes>-3</d:quota-available-bytes>
+                <d:getetag>&quot;685942ba88089&quot;</d:getetag>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/files/admin/Media/photo-1495962637988-4be9db2af01f.jpeg</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Sun, 22 Jun 2025 08:38:23 GMT</d:getlastmodified>
+                <d:getcontentlength>339020</d:getcontentlength>
+                <d:resourcetype/>
+                <d:getetag>&quot;0c60939cc8bd7208d18ccde73f46cbfd&quot;</d:getetag>
+                <d:getcontenttype>image/jpeg</d:getcontenttype>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/files/admin/Media/photo-1498855592392-af2bf1e0a4c7.jpeg</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Sun, 22 Jun 2025 08:38:23 GMT</d:getlastmodified>
+                <d:getcontentlength>351174</d:getcontentlength>
+                <d:resourcetype/>
+                <d:getetag>&quot;7f5f8065bb5cde9e762bbcdda5e533ae&quot;</d:getetag>
+                <d:getcontenttype>image/jpeg</d:getcontenttype>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/files/admin/Media/photo-1503991721143-75f95ebf1e55.jpeg</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Sun, 22 Jun 2025 08:38:23 GMT</d:getlastmodified>
+                <d:getcontentlength>298590</d:getcontentlength>
+                <d:resourcetype/>
+                <d:getetag>&quot;3fc1f142e8a331822d8a821b7853fca3&quot;</d:getetag>
+                <d:getcontenttype>image/jpeg</d:getcontenttype>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/files/admin/Media/photo-1517603250781-c4eac1449a80.jpeg</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Sun, 22 Jun 2025 08:38:23 GMT</d:getlastmodified>
+                <d:getcontentlength>444676</d:getcontentlength>
+                <d:resourcetype/>
+                <d:getetag>&quot;ca2b880dff565b974684403fb5608e70&quot;</d:getetag>
+                <d:getcontenttype>image/jpeg</d:getcontenttype>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/files/admin/Media/photo-1527668441211-67a036f77ab4.jpeg</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Sun, 22 Jun 2025 08:38:23 GMT</d:getlastmodified>
+                <d:getcontentlength>192051</d:getcontentlength>
+                <d:resourcetype/>
+                <d:getetag>&quot;77d8cea82ca571e4faee8ea982a8dfcc&quot;</d:getetag>
+                <d:getcontenttype>image/jpeg</d:getcontenttype>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/files/admin/Media/photo-1532597751369-606119ceda8a.jpeg</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Sun, 22 Jun 2025 08:38:23 GMT</d:getlastmodified>
+                <d:getcontentlength>253298</d:getcontentlength>
+                <d:resourcetype/>
+                <d:getetag>&quot;3cfe4adc194e649b5d5b2b3fce7744c5&quot;</d:getetag>
+                <d:getcontenttype>image/jpeg</d:getcontenttype>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/files/admin/Media/photo-1533658925625-2f94d23fc425.jpeg</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Sun, 22 Jun 2025 08:38:23 GMT</d:getlastmodified>
+                <d:getcontentlength>250989</d:getcontentlength>
+                <d:resourcetype/>
+                <d:getetag>&quot;5d2d1d475db37b1b2a9b360ad013ae6b&quot;</d:getetag>
+                <d:getcontenttype>image/jpeg</d:getcontenttype>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/files/admin/Nextcloud_Server_Administration_Manual.pdf</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Sun, 22 Jun 2025 08:38:23 GMT</d:getlastmodified>
+                <d:getcontentlength>8822513</d:getcontentlength>
+                <d:resourcetype/>
+                <d:getetag>&quot;f03f6cc5f55557effa9106cc4d11794c&quot;</d:getetag>
+                <d:getcontenttype>application/pdf</d:getcontenttype>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/files/admin/Sjablonen/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Tue, 24 Jun 2025 10:43:40 GMT</d:getlastmodified>
+                <d:resourcetype>
+                    <d:collection/>
+                </d:resourcetype>
+                <d:quota-used-bytes>0</d:quota-used-bytes>
+                <d:quota-available-bytes>-3</d:quota-available-bytes>
+                <d:getetag>&quot;685a815cbf716&quot;</d:getetag>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/files/admin/Templates/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Tue, 24 Jun 2025 10:45:48 GMT</d:getlastmodified>
+                <d:resourcetype>
+                    <d:collection/>
+                </d:resourcetype>
+                <d:quota-used-bytes>13917</d:quota-used-bytes>
+                <d:quota-available-bytes>-3</d:quota-available-bytes>
+                <d:getetag>&quot;685a81dcaac59&quot;</d:getetag>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/files/admin/Templates/Template.docx</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Tue, 24 Jun 2025 10:45:41 GMT</d:getlastmodified>
+                <d:getcontentlength>13917</d:getcontentlength>
+                <d:resourcetype/>
+                <d:getetag>&quot;8ed4586a84ec1485f1fe16b0a3503ccf&quot;</d:getetag>
+                <d:getcontenttype>application/vnd.openxmlformats-officedocument.wordprocessingml.document</d:getcontenttype>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+</d:multistatus>
