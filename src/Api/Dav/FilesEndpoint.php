@@ -4,6 +4,7 @@ namespace Axyr\Nextcloud\Api\Dav;
 
 use Axyr\Nextcloud\Api\AbstractEndpoint;
 use Axyr\Nextcloud\Enums\Depth;
+use Axyr\Nextcloud\Enums\Favorite;
 use Axyr\Nextcloud\Enums\Overwrite;
 use Axyr\Nextcloud\Enums\WebDavNamespace;
 use Axyr\Nextcloud\Parsers\WebDavXmlParser;
@@ -88,6 +89,42 @@ class FilesEndpoint extends AbstractEndpoint
         $response = $this->dav
             ->forNamespace(WebDavNamespace::Files)
             ->copy($source, $destination, $overwrite);
+
+        $this->throwExceptionIfNotOk($response);
+
+        return true;
+    }
+
+    public function favorites(): Collection
+    {
+        $body = '<?xml version="1.0"?><oc:filter-files xmlns:d="DAV:" xmlns:oc="http://owncloud.org/ns" xmlns:nc="http://nextcloud.org/ns"><oc:filter-rules><oc:favorite>1</oc:favorite></oc:filter-rules></oc:filter-files>';
+
+        $response = $this->dav
+            ->forNamespace(WebDavNamespace::Files)
+            ->report($body);
+
+        $this->throwExceptionIfNotOk($response);
+
+        return collect(WebDavXmlParser::parse($response->body()))->mapInto(Resource::class);
+    }
+
+    public function markAsFavorite(string $path): bool
+    {
+        return $this->setFavorite($path);
+    }
+
+    public function unMarkAsFavorite(string $path): bool
+    {
+        return $this->setFavorite($path, Favorite::No);
+    }
+
+    public function setFavorite(string $path, Favorite $favorite = Favorite::Yes): bool
+    {
+        $body = '<?xml version="1.0"?><d:propertyupdate xmlns:d="DAV:" xmlns:oc="http://owncloud.org/ns"><d:set><d:prop><oc:favorite>' . $favorite->value . '</oc:favorite></d:prop></d:set></d:propertyupdate>';
+
+        $response = $this->dav
+            ->forNamespace(WebDavNamespace::Files)
+            ->propPatch($path, $body);
 
         $this->throwExceptionIfNotOk($response);
 

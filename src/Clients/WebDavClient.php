@@ -132,4 +132,14 @@ class WebDavClient
     {
         return $this->client->send('LOCK', $this->getFullPath($path), ['body' => $body]);
     }
+
+    public function report(string $body = ''): Response
+    {
+        return $this->client->send('REPORT', $this->getFullPath(''), ['body' => $body]);
+    }
+
+    public function propPatch(string $path, string $body = ''): Response
+    {
+        return $this->client->send('PROPPATCH', $this->getFullPath($path), ['body' => $body]);
+    }
 }

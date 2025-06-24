@@ -89,4 +89,32 @@ class FilesEndpointTest extends TestCase
         $this->assertTrue($result);
     }
 
+    public function testGetFavorites(): void
+    {
+        $this->fakeHttpResponse('fixtures/dav/favorites.xml');
+        $resources = Nextcloud::dav()->files()->favorites();
+
+        $this->assertCount(2, $resources);
+        $this->assertEquals('/remote.php/dav/files/admin/Nextcloud_Server_Administration_Manual.pdf', $resources->first()->path());
+        $this->assertEquals('/remote.php/dav/files/admin/TestC', $resources->last()->path());
+    }
+
+    public function testMarkAsFavorite(): void
+    {
+        $this->fakeHttpResponse('fixtures/dav/empty-response.txt');
+
+        $result = Nextcloud::dav()->files()->markAsFavorite('/TestA');
+
+        $this->assertTrue($result);
+    }
+
+    public function testUnMarkAsFavorite(): void
+    {
+        $this->fakeHttpResponse('fixtures/dav/empty-response.txt');
+
+        $result = Nextcloud::dav()->files()->unMarkAsFavorite('/TestA');
+
+        $this->assertTrue($result);
+    }
+
 }

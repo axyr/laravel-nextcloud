@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<d:multistatus xmlns:d="DAV:">
+    <d:response>
+        <d:href>/remote.php/dav/files/admin/Nextcloud_Server_Administration_Manual.pdf</d:href>
+        <d:propstat>
+            <d:prop/>
+            <d:status>HTTP/1.1 418 I'm a teapot</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/files/admin/TestC</d:href>
+        <d:propstat>
+            <d:prop/>
+            <d:status>HTTP/1.1 418 I'm a teapot</d:status>
+        </d:propstat>
+    </d:response>
+</d:multistatus>
