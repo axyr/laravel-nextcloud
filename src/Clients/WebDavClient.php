@@ -4,6 +4,7 @@ namespace Axyr\Nextcloud\Clients;
 
 use Axyr\Nextcloud\Contracts\ConfigInterface;
 use Axyr\Nextcloud\Enums\Depth;
+use Axyr\Nextcloud\Enums\Overwrite;
 use Axyr\Nextcloud\Enums\WebDavNamespace;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
@@ -97,13 +98,6 @@ class WebDavClient
         return $this->client->send('PUT', $this->getFullPath($path), ['body' => $content]);
     }
 
-    public function move(string $source, string $destination): Response
-    {
-        return $this->client
-            ->withHeaders(['Destination' => $this->getFullPath($destination)])
-            ->send('MOVE', $this->getFullPath($source));
-    }
-
     public function get(string $path): Response
     {
         return $this->client->send('GET', $this->getFullPath($path));
@@ -114,10 +108,23 @@ class WebDavClient
         return $this->client->send('DELETE', $this->getFullPath($path));
     }
 
-    public function copy(string $source, string $destination): Response
+    public function move(string $source, string $destination, Overwrite $overwrite = Overwrite::No): Response
     {
         return $this->client
-            ->withHeaders(['Destination' => $this->getFullPath($destination)])
+            ->withHeaders([
+                'Destination' => $this->getFullPath($destination),
+                'Overwrite' => $overwrite->value,
+            ])
+            ->send('MOVE', $this->getFullPath($source));
+    }
+
+    public function copy(string $source, string $destination, Overwrite $overwrite = Overwrite::No): Response
+    {
+        return $this->client
+            ->withHeaders([
+                'Destination' => $this->getFullPath($destination),
+                'Overwrite' => $overwrite->value,
+            ])
             ->send('COPY', $this->getFullPath($source));
     }
 

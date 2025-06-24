@@ -2,6 +2,7 @@
 
 namespace Axyr\Nextcloud\Tests\Api\Dav;
 
+use Axyr\Nextcloud\Enums\Overwrite;
 use Axyr\Nextcloud\Exception\NextCloudApiException;
 use Axyr\Nextcloud\Facades\Nextcloud;
 use Axyr\Nextcloud\Tests\TestCase;
@@ -69,4 +70,23 @@ class FilesEndpointTest extends TestCase
 
         $this->assertTrue($result);
     }
+
+    public function testMove(): void
+    {
+        $this->fakeHttpResponse('fixtures/dav/empty-response.txt');
+
+        $result = Nextcloud::dav()->files()->move('/TestA', '/TestB/TestC', OverWrite::Yes);
+
+        $this->assertTrue($result);
+    }
+
+    public function testCopy(): void
+    {
+        $this->fakeHttpResponse('fixtures/dav/empty-response.txt');
+
+        $result = Nextcloud::dav()->files()->copy('/TestA', '/TestB/TestC', OverWrite::Yes);
+
+        $this->assertTrue($result);
+    }
+
 }

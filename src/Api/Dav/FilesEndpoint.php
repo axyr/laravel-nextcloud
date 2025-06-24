@@ -4,6 +4,7 @@ namespace Axyr\Nextcloud\Api\Dav;
 
 use Axyr\Nextcloud\Api\AbstractEndpoint;
 use Axyr\Nextcloud\Enums\Depth;
+use Axyr\Nextcloud\Enums\Overwrite;
 use Axyr\Nextcloud\Enums\WebDavNamespace;
 use Axyr\Nextcloud\Parsers\WebDavXmlParser;
 use Axyr\Nextcloud\ValueObjects\Dav\Resource;
@@ -65,6 +66,28 @@ class FilesEndpoint extends AbstractEndpoint
         $response = $this->dav
             ->forNamespace(WebDavNamespace::Files)
             ->delete($path);
+
+        $this->throwExceptionIfNotOk($response);
+
+        return true;
+    }
+
+    public function move(string $source, string $destination, Overwrite $overwrite = Overwrite::No): bool
+    {
+        $response = $this->dav
+            ->forNamespace(WebDavNamespace::Files)
+            ->move($source, $destination, $overwrite);
+
+        $this->throwExceptionIfNotOk($response);
+
+        return true;
+    }
+
+    public function copy(string $source, string $destination, Overwrite $overwrite = Overwrite::No): bool
+    {
+        $response = $this->dav
+            ->forNamespace(WebDavNamespace::Files)
+            ->copy($source, $destination, $overwrite);
 
         $this->throwExceptionIfNotOk($response);
 
