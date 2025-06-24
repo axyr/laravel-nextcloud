@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<d:multistatus xmlns:d="DAV:" xmlns:s="http://sabredav.org/ns" xmlns:cal="urn:ietf:params:xml:ns:caldav" xmlns:cs="http://calendarserver.org/ns/" xmlns:oc="http://owncloud.org/ns"
+>
+    <d:response>
+        <d:href>/remote.php/dav/calendars/admin/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:resourcetype>
+                    <d:collection/>
+                </d:resourcetype>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/calendars/admin/personal/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:resourcetype>
+                    <d:collection/>
+                    <cal:calendar/>
+                </d:resourcetype>
+                <cs:getctag>http://sabre.io/ns/sync/4</cs:getctag>
+                <s:sync-token>4</s:sync-token>
+                <cal:supported-calendar-component-set>
+                    <cal:comp name="VEVENT"/>
+                </cal:supported-calendar-component-set>
+                <cal:schedule-calendar-transp>
+                    <cal:opaque/>
+                </cal:schedule-calendar-transp>
+                <oc:owner-principal>principals/users/admin</oc:owner-principal>
+                <d:displayname>Personal</d:displayname>
+                <x1:calendar-order xmlns:x1="http://apple.com/ns/ical/">0</x1:calendar-order>
+                <x1:calendar-color xmlns:x1="http://apple.com/ns/ical/">#00679e</x1:calendar-color>
+                <x2:owner-displayname xmlns:x2="http://nextcloud.com/ns">admin</x2:owner-displayname>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/calendars/admin/contact_birthdays/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:resourcetype>
+                    <d:collection/>
+                    <cal:calendar/>
+                </d:resourcetype>
+                <cs:getctag>http://sabre.io/ns/sync/1</cs:getctag>
+                <s:sync-token>1</s:sync-token>
+                <cal:supported-calendar-component-set>
+                    <cal:comp name="VEVENT"/>
+                </cal:supported-calendar-component-set>
+                <cal:schedule-calendar-transp>
+                    <cal:opaque/>
+                </cal:schedule-calendar-transp>
+                <oc:owner-principal>principals/users/admin</oc:owner-principal>
+                <d:displayname>Contact birthdays</d:displayname>
+                <x1:calendar-order xmlns:x1="http://apple.com/ns/ical/">0</x1:calendar-order>
+                <x1:calendar-color xmlns:x1="http://apple.com/ns/ical/">#E9D859</x1:calendar-color>
+                <x2:owner-displayname xmlns:x2="http://nextcloud.com/ns">admin</x2:owner-displayname>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/calendars/admin/work/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:resourcetype>
+                    <d:collection/>
+                    <cal:calendar/>
+                </d:resourcetype>
+                <cs:getctag>http://sabre.io/ns/sync/2</cs:getctag>
+                <s:sync-token>2</s:sync-token>
+                <cal:supported-calendar-component-set>
+                    <cal:comp name="VEVENT"/>
+                </cal:supported-calendar-component-set>
+                <cal:schedule-calendar-transp>
+                    <cal:opaque/>
+                </cal:schedule-calendar-transp>
+                <oc:owner-principal>principals/users/admin</oc:owner-principal>
+                <d:displayname>Work</d:displayname>
+                <cal:calendar-timezone>BEGIN:VCALENDAR\n
+                    PRODID:-//IDN nextcloud.com//Calendar app 5.3.3//EN\n
+                    CALSCALE:GREGORIAN\n
+                    VERSION:2.0\n
+                    BEGIN:VTIMEZONE\n
+                    TZID:Europe/Amsterdam\n
+                    BEGIN:DAYLIGHT\n
+                    TZOFFSETFROM:+0100\n
+                    TZOFFSETTO:+0200\n
+                    TZNAME:CEST\n
+                    DTSTART:19700329T020000\n
+                    RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU\n
+                    END:DAYLIGHT\n
+                    BEGIN:STANDARD\n
+                    TZOFFSETFROM:+0200\n
+                    TZOFFSETTO:+0100\n
+                    TZNAME:CET\n
+                    DTSTART:19701025T030000\n
+                    RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU\n
+                    END:STANDARD\n
+                    END:VTIMEZONE\n
+                    END:VCALENDAR
+                </cal:calendar-timezone>
+                <x1:calendar-order xmlns:x1="http://apple.com/ns/ical/">0</x1:calendar-order>
+                <x1:calendar-color xmlns:x1="http://apple.com/ns/ical/">#C98879</x1:calendar-color>
+                <x2:owner-displayname xmlns:x2="http://nextcloud.com/ns">admin</x2:owner-displayname>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/calendars/admin/inbox/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:resourcetype>
+                    <d:collection/>
+                    <cal:schedule-inbox/>
+                </d:resourcetype>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/calendars/admin/outbox/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:resourcetype>
+                    <d:collection/>
+                    <cal:schedule-outbox/>
+                </d:resourcetype>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/calendars/admin/trashbin/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:resourcetype>
+                    <d:collection/>
+                    <x2:trash-bin xmlns:x2="http://nextcloud.com/ns"/>
+                </d:resourcetype>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/calendars/admin/huisvuilkalenderdenhaagnl/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Tue, 24 Jun 2025 16:15:33 GMT</d:getlastmodified>
+                <d:resourcetype>
+                    <d:collection/>
+                    <cs:subscribed/>
+                </d:resourcetype>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+</d:multistatus>

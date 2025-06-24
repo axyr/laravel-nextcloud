@@ -9,18 +9,16 @@ use Axyr\Nextcloud\Parsers\WebDavXmlParser;
 use Axyr\Nextcloud\ValueObjects\Dav\Resource;
 use Illuminate\Support\Collection;
 
-class FoldersEndpoint extends AbstractEndpoint
+class CalendarsEndpoint extends AbstractEndpoint
 {
     /**
-     * Listing Folders will also list Files.
-     *
      * @return Collection<Resource>
      */
-    public function list(?string $path = null, Depth $depth = Depth::Infinity): Collection
+    public function list(?string $path = null): Collection
     {
         $response = $this->dav
-            ->forNamespace(WebDavNamespace::Files)
-            ->withDepth($depth)
+            ->forNamespace(WebDavNamespace::Calendars)
+            ->withDepth(Depth::One)
             ->propFind($path);
 
         $xml = $response->getBody()->getContents();

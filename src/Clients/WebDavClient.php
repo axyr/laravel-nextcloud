@@ -14,7 +14,7 @@ class WebDavClient
 {
     private PendingRequest $client;
 
-    private WebDavNamespace $namespace;
+    private ?WebDavNamespace $namespace = null;
 
     private Depth $depth = Depth::Zero;
 
@@ -56,7 +56,11 @@ class WebDavClient
 
     protected function fullPath(?string $path = null): string
     {
-        return $this->namespace->value . '/' . $this->config->getUsername() . '/' . ltrim((string)$path, '/');
+        if ($this->namespace) {
+            return $this->namespace->value . '/' . $this->config->getUsername() . '/' . ltrim((string)$path, '/');
+        }
+
+        return ltrim((string)$path, '/');
     }
 
     public function propFind(?string $path = null, string $body = '', array $headers = []): Response

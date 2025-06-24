@@ -29,7 +29,6 @@
     "require": {
         "php": "^8.2",
         "laravel/framework": "^12.0",
-        "sabre/dav": "^4.7",
         "ext-simplexml": "*"
     },
     "require-dev": {

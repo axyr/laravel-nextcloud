@@ -4,8 +4,18 @@ namespace Axyr\Nextcloud\Api\Dav;
 
 class DavApi
 {
-    public function folders(): FoldersEndpoint
+    public function namespaces(): NamespacesEndpoint
     {
-        return app(FoldersEndpoint::class);
+        return app(NamespacesEndpoint::class);
+    }
+
+    public function files(): FilesEndpoint
+    {
+        return app(FilesEndpoint::class);
+    }
+
+    public function calendars(): CalendarsEndpoint
+    {
+        return app(CalendarsEndpoint::class);
     }
 }
