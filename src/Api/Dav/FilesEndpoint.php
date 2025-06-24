@@ -59,4 +59,15 @@ class FilesEndpoint extends AbstractEndpoint
 
         return true;
     }
+
+    public function delete(string $path): bool
+    {
+        $response = $this->dav
+            ->forNamespace(WebDavNamespace::Files)
+            ->delete($path);
+
+        $this->throwExceptionIfNotOk($response);
+
+        return true;
+    }
 }

@@ -60,4 +60,13 @@ class FilesEndpointTest extends TestCase
 
         Nextcloud::dav()->files()->createFolder('/Test');
     }
+
+    public function testDelete(): void
+    {
+        $this->fakeHttpResponse('fixtures/dav/empty-response.txt');
+
+        $result = Nextcloud::dav()->files()->delete('/Test');
+
+        $this->assertTrue($result);
+    }
 }
