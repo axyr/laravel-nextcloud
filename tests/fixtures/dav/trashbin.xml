@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<d:multistatus xmlns:d="DAV:">
+    <d:response>
+        <d:href>/remote.php/dav/trashbin/admin/trash/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:resourcetype>
+                    <d:collection/>
+                </d:resourcetype>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/trashbin/admin/trash/TestC.d1750798245/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Tue, 24 Jun 2025 20:50:45 GMT</d:getlastmodified>
+                <d:resourcetype>
+                    <d:collection/>
+                </d:resourcetype>
+                <d:getetag>1750798245</d:getetag>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/trashbin/admin/trash/TestC.d1750798218/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Tue, 24 Jun 2025 20:50:18 GMT</d:getlastmodified>
+                <d:resourcetype>
+                    <d:collection/>
+                </d:resourcetype>
+                <d:getetag>1750798218</d:getetag>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/trashbin/admin/trash/TestC.d1750795768/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Tue, 24 Jun 2025 20:09:28 GMT</d:getlastmodified>
+                <d:resourcetype>
+                    <d:collection/>
+                </d:resourcetype>
+                <d:getetag>1750795768</d:getetag>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/trashbin/admin/trash/TestC.d1750795766/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Tue, 24 Jun 2025 20:09:26 GMT</d:getlastmodified>
+                <d:resourcetype>
+                    <d:collection/>
+                </d:resourcetype>
+                <d:getetag>1750795766</d:getetag>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/trashbin/admin/trash/TestC.d1750795734/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Tue, 24 Jun 2025 20:08:54 GMT</d:getlastmodified>
+                <d:resourcetype>
+                    <d:collection/>
+                </d:resourcetype>
+                <d:getetag>1750795734</d:getetag>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/trashbin/admin/trash/Testss.d1750795132/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Tue, 24 Jun 2025 19:58:52 GMT</d:getlastmodified>
+                <d:resourcetype>
+                    <d:collection/>
+                </d:resourcetype>
+                <d:getetag>1750795132</d:getetag>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/trashbin/admin/trash/Testsssss.d1750794771/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Tue, 24 Jun 2025 19:52:51 GMT</d:getlastmodified>
+                <d:resourcetype>
+                    <d:collection/>
+                </d:resourcetype>
+                <d:getetag>1750794771</d:getetag>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+    <d:response>
+        <d:href>/remote.php/dav/trashbin/admin/trash/Testssssssss.d1750794735/</d:href>
+        <d:propstat>
+            <d:prop>
+                <d:getlastmodified>Tue, 24 Jun 2025 19:52:15 GMT</d:getlastmodified>
+                <d:resourcetype>
+                    <d:collection/>
+                </d:resourcetype>
+                <d:getetag>1750794735</d:getetag>
+            </d:prop>
+            <d:status>HTTP/1.1 200 OK</d:status>
+        </d:propstat>
+    </d:response>
+</d:multistatus>

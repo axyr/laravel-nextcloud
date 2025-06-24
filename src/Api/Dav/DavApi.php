@@ -18,4 +18,9 @@ class DavApi
     {
         return app(CalendarsEndpoint::class);
     }
+
+    public function trashbin(): TrashbinEndpoint
+    {
+        return app(TrashbinEndpoint::class);
+    }
 }
