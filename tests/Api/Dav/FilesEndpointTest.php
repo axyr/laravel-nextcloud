@@ -2,6 +2,7 @@
 
 namespace Axyr\Nextcloud\Tests\Api\Dav;
 
+use Axyr\Nextcloud\Exception\NextCloudApiException;
 use Axyr\Nextcloud\Facades\Nextcloud;
 use Axyr\Nextcloud\Tests\TestCase;
 
@@ -38,5 +39,25 @@ class FilesEndpointTest extends TestCase
 
         $this->assertIsString($content);
         $this->assertSame("PK", substr($content, 0, 2));
+    }
+
+    public function testCreateFolder(): void
+    {
+        $this->fakeHttpResponse('fixtures/dav/empty-response.txt');
+
+        $result = Nextcloud::dav()->files()->createFolder('/Test');
+
+        $this->assertTrue($result);
+    }
+
+    public function testCreateFolderFails(): void
+    {
+        $this->expectException(NextCloudApiException::class);
+        $this->expectExceptionCode(405);
+        $this->expectExceptionMessage('Parent node does not exist');
+
+        $this->fakeHttpResponse('fixtures/dav/parent-node-does-not-exists.xml', 405);
+
+        Nextcloud::dav()->files()->createFolder('/Test');
     }
 }

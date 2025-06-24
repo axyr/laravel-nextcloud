@@ -21,9 +21,9 @@ class FilesEndpoint extends AbstractEndpoint
             ->withDepth($depth)
             ->propFind($path);
 
-        $xml = $response->getBody()->getContents();
+        $this->throwExceptionIfNotOk($response);
 
-        return collect(WebDavXmlParser::parse($xml))->mapInto(Resource::class);
+        return collect(WebDavXmlParser::parse($response->body()))->mapInto(Resource::class);
     }
 
     public function downloadFile(string $path): string
@@ -31,6 +31,8 @@ class FilesEndpoint extends AbstractEndpoint
         $response = $this->dav
             ->forNamespace(WebDavNamespace::Files)
             ->get($path);
+
+        $this->throwExceptionIfNotOk($response);
 
         return $response->body();
     }
@@ -42,6 +44,19 @@ class FilesEndpoint extends AbstractEndpoint
             ->forNamespace(WebDavNamespace::Files)
             ->get($path);
 
+        $this->throwExceptionIfNotOk($response);
+
         return $response->body();
+    }
+
+    public function createFolder(string $path): bool
+    {
+        $response = $this->dav
+            ->forNamespace(WebDavNamespace::Files)
+            ->createDirectory($path);
+
+        $this->throwExceptionIfNotOk($response);
+
+        return true;
     }
 }
