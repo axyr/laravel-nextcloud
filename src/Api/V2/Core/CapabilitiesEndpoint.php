@@ -9,7 +9,7 @@ class CapabilitiesEndpoint extends AbstractEndpoint
 {
     public function list(array $options = []): Capabilities
     {
-        $response = $this->apiGet('/ocs/v2.php/cloud/capabilities', $options);
+        $response = $this->http->get('/ocs/v2.php/cloud/capabilities', $options);
 
         $this->throwExceptionIfNotOk($response);
 

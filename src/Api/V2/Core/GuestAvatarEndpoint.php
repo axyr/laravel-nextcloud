@@ -8,7 +8,7 @@ class GuestAvatarEndpoint extends AbstractEndpoint
 {
     public function get(string $guestName, int $size, array $options = []): string
     {
-        $response = $this->apiGet("/index.php/avatar/guest/{$guestName}/{$size}", $options);
+        $response = $this->http->get("/index.php/avatar/guest/{$guestName}/{$size}", $options);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -17,7 +17,7 @@ class GuestAvatarEndpoint extends AbstractEndpoint
 
     public function getDark(string $guestName, int $size, array $options = []): string
     {
-        $response = $this->apiGet("/index.php/avatar/guest/{$guestName}/{$size}/dark", $options);
+        $response = $this->http->get("/index.php/avatar/guest/{$guestName}/{$size}/dark", $options);
 
         $this->throwExceptionIfNotOk($response);
 

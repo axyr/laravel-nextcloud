@@ -4,6 +4,7 @@ namespace Axyr\Nextcloud\Clients;
 
 use Axyr\Nextcloud\Contracts\ConfigInterface;
 use Illuminate\Http\Client\PendingRequest;
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
@@ -28,5 +29,25 @@ readonly class HttpClient
     public function client(): PendingRequest
     {
         return $this->client;
+    }
+
+    public function get($path, array $query = []): Response
+    {
+        return $this->client->get($path, $query);
+    }
+
+    public function post($path, array $data = []): Response
+    {
+        return $this->client->post($path, $data);
+    }
+
+    public function put($path, array $data = []): Response
+    {
+        return $this->client->put($path, $data);
+    }
+
+    public function delete($path, array $data = []): Response
+    {
+        return $this->client->delete($path, $data);
     }
 }

@@ -9,7 +9,7 @@ class HoverCardEndpoint extends AbstractEndpoint
 {
     public function get(string $userId, array $options = []): HoverCard
     {
-        $response = $this->apiGet("ocs/v2.php/hovercard/v1/{$userId}", $options);
+        $response = $this->http->get("ocs/v2.php/hovercard/v1/{$userId}", $options);
 
         $this->throwExceptionIfNotOk($response);
 

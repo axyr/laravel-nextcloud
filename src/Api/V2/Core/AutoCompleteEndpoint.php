@@ -23,7 +23,7 @@ class AutoCompleteEndpoint extends AbstractEndpoint
             }
         }
 
-        $response = $this->apiGet('/ocs/v2.php/core/autocomplete/get', $query);
+        $response = $this->http->get('/ocs/v2.php/core/autocomplete/get', $query);
 
         $this->throwExceptionIfNotOk($response);
 

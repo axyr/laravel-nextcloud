@@ -10,7 +10,7 @@ class ProfileEndpoint extends AbstractEndpoint
 {
     public function list(string $userId, array $options = []): ProfileFields
     {
-        $response = $this->apiGet("/ocs/v2.php/profile/{$userId}", $options);
+        $response = $this->http->get("/ocs/v2.php/profile/{$userId}", $options);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -19,7 +19,7 @@ class ProfileEndpoint extends AbstractEndpoint
 
     public function setVisibility(string $userId, string $field, ProfileFieldVisibility $visibility): bool
     {
-        $response = $this->apiPut("/ocs/v2.php/profile/{$userId}", [
+        $response = $this->http->put("/ocs/v2.php/profile/{$userId}", [
             'paramId' => $field,
             'visibility' => $visibility->value,
         ]);

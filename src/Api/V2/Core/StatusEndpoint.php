@@ -9,7 +9,7 @@ class StatusEndpoint extends AbstractEndpoint
 {
     public function get(array $options = []): Status
     {
-        $response = $this->apiGet('status.php', $options);
+        $response = $this->http->get('status.php', $options);
 
         $this->throwExceptionIfNotOk($response);
 

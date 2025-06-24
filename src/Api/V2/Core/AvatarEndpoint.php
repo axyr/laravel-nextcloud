@@ -8,7 +8,7 @@ class AvatarEndpoint extends AbstractEndpoint
 {
     public function get(string $userId, int $size, array $options = []): string
     {
-        $response = $this->apiGet("/index.php/avatar/{$userId}/{$size}", $options);
+        $response = $this->http->get("/index.php/avatar/{$userId}/{$size}", $options);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -17,7 +17,7 @@ class AvatarEndpoint extends AbstractEndpoint
 
     public function getDark(string $userId, int $size, array $options = []): string
     {
-        $response = $this->apiGet("/index.php/avatar/{$userId}/{$size}/dark", $options);
+        $response = $this->http->get("/index.php/avatar/{$userId}/{$size}/dark", $options);
 
         $this->throwExceptionIfNotOk($response);
 

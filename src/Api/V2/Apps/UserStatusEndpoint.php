@@ -10,7 +10,7 @@ class UserStatusEndpoint extends AbstractEndpoint
 {
     public function get(array $options = []): UserStatus
     {
-        $response = $this->apiGet('/ocs/v2.php/apps/user_status/api/v1/user_status', $options);
+        $response = $this->http->get('/ocs/v2.php/apps/user_status/api/v1/user_status', $options);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -19,7 +19,7 @@ class UserStatusEndpoint extends AbstractEndpoint
 
     public function setStatusType(string $statusType): UserStatus
     {
-        $response = $this->apiPut('/ocs/v2.php/apps/user_status/api/v1/user_status/status', [
+        $response = $this->http->put('/ocs/v2.php/apps/user_status/api/v1/user_status/status', [
             'statusType' => $statusType,
         ]);
 
@@ -36,7 +36,7 @@ class UserStatusEndpoint extends AbstractEndpoint
             'clearAt' => $clearAt,
         ], fn($v) => ! is_null($v));
 
-        $response = $this->apiPut('/ocs/v2.php/apps/user_status/api/v1/user_status/message/custom', $payload);
+        $response = $this->http->put('/ocs/v2.php/apps/user_status/api/v1/user_status/message/custom', $payload);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -45,7 +45,7 @@ class UserStatusEndpoint extends AbstractEndpoint
 
     public function setPredefinedMessage(string $messageId, ?int $clearAt = null): UserStatus
     {
-        $response = $this->apiPut('/ocs/v2.php/apps/user_status/api/v1/user_status/message/predefined', [
+        $response = $this->http->put('/ocs/v2.php/apps/user_status/api/v1/user_status/message/predefined', [
             'messageId' => $messageId,
             'clearAt' => $clearAt,
         ]);
@@ -57,14 +57,14 @@ class UserStatusEndpoint extends AbstractEndpoint
 
     public function clearMessage(): void
     {
-        $response = $this->apiDelete('/ocs/v2.php/apps/user_status/api/v1/user_status/message');
+        $response = $this->http->delete('/ocs/v2.php/apps/user_status/api/v1/user_status/message');
 
         $this->throwExceptionIfNotOk($response);
     }
 
     public function heartbeat(string $status): UserStatus
     {
-        $response = $this->apiPut('/ocs/v2.php/apps/user_status/api/v1/heartbeat', [
+        $response = $this->http->put('/ocs/v2.php/apps/user_status/api/v1/heartbeat', [
             'status' => $status,
         ]);
 
@@ -75,7 +75,7 @@ class UserStatusEndpoint extends AbstractEndpoint
 
     public function getStatuses(array $options = []): Collection
     {
-        $response = $this->apiGet('/ocs/v2.php/apps/user_status/api/v1/statuses', $options);
+        $response = $this->http->get('/ocs/v2.php/apps/user_status/api/v1/statuses', $options);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -84,7 +84,7 @@ class UserStatusEndpoint extends AbstractEndpoint
 
     public function getStatus(string $userId): UserStatus
     {
-        $response = $this->apiGet("/ocs/v2.php/apps/user_status/api/v1/statuses/{$userId}");
+        $response = $this->http->get("/ocs/v2.php/apps/user_status/api/v1/statuses/{$userId}");
 
         $this->throwExceptionIfNotOk($response);
 
@@ -93,7 +93,7 @@ class UserStatusEndpoint extends AbstractEndpoint
 
     public function revert(string $messageId): UserStatus
     {
-        $response = $this->apiDelete("/ocs/v2.php/apps/user_status/api/v1/user_status/revert/{$messageId}");
+        $response = $this->http->delete("/ocs/v2.php/apps/user_status/api/v1/user_status/revert/{$messageId}");
 
         $this->throwExceptionIfNotOk($response);
 
@@ -102,7 +102,7 @@ class UserStatusEndpoint extends AbstractEndpoint
 
     public function getPredefinedStatuses(): Collection
     {
-        $response = $this->apiGet('/ocs/v2.php/apps/user_status/api/v1/predefined_statuses');
+        $response = $this->http->get('/ocs/v2.php/apps/user_status/api/v1/predefined_statuses');
 
         $this->throwExceptionIfNotOk($response);
 

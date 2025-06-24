@@ -9,7 +9,7 @@ class AppPasswordEndpoint extends AbstractEndpoint
 {
     public function get(array $options = []): AppPassword
     {
-        $response = $this->apiGet('/ocs/v2.php/core/apppassword', $options);
+        $response = $this->http->get('/ocs/v2.php/core/apppassword', $options);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -18,7 +18,7 @@ class AppPasswordEndpoint extends AbstractEndpoint
 
     public function delete(array $options = []): bool
     {
-        $response = $this->apiDelete('/ocs/v2.php/core/apppassword', $options);
+        $response = $this->http->delete('/ocs/v2.php/core/apppassword', $options);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -27,7 +27,7 @@ class AppPasswordEndpoint extends AbstractEndpoint
 
     public function rotate(array $options = []): AppPassword
     {
-        $response = $this->apiPost('/ocs/v2.php/core/apppassword', $options);
+        $response = $this->http->post('/ocs/v2.php/core/apppassword', $options);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -36,7 +36,7 @@ class AppPasswordEndpoint extends AbstractEndpoint
 
     public function confirm(array $options = []): AppPassword
     {
-        $response = $this->apiPost('/ocs/v2.php/core/apppassword/confirm', $options);
+        $response = $this->http->post('/ocs/v2.php/core/apppassword/confirm', $options);
 
         $this->throwExceptionIfNotOk($response);
 

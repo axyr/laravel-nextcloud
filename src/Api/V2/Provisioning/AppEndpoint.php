@@ -14,7 +14,7 @@ class AppEndpoint extends AbstractEndpoint
      */
     public function list(array $options = []): Collection
     {
-        $response = $this->apiGet('ocs/v2.php/cloud/apps', $options);
+        $response = $this->http->get('ocs/v2.php/cloud/apps', $options);
 
         $this->throwExceptionIfNotOk($response);
 
@@ -23,7 +23,7 @@ class AppEndpoint extends AbstractEndpoint
 
     public function get(string $id): App
     {
-        $response = $this->apiGet("ocs/v2.php/cloud/apps/{$id}");
+        $response = $this->http->get("ocs/v2.php/cloud/apps/{$id}");
 
         $this->throwExceptionIfNotOk($response);
 
@@ -32,7 +32,7 @@ class AppEndpoint extends AbstractEndpoint
 
     public function enable(string $id): bool
     {
-        $response = $this->apiPost("ocs/v2.php/cloud/apps/{$id}");
+        $response = $this->http->post("ocs/v2.php/cloud/apps/{$id}");
 
         $this->throwExceptionIfNotOk($response);
 
@@ -41,7 +41,7 @@ class AppEndpoint extends AbstractEndpoint
 
     public function disable(string $id): bool
     {
-        $response = $this->apiDelete("ocs/v2.php/cloud/apps/{$id}");
+        $response = $this->http->delete("ocs/v2.php/cloud/apps/{$id}");
 
         $this->throwExceptionIfNotOk($response);
 
