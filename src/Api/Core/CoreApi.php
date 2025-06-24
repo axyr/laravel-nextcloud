@@ -33,4 +33,10 @@ class CoreApi
     {
         return app(HoverCardEndpoint::class);
     }
+
+    public function capabilities(): CapabilitiesEndpoint
+    {
+        return app(CapabilitiesEndpoint::class);
+    }
+
 }

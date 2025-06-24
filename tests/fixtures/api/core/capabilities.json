@@ -1,0 +1,291 @@
+{
+    "ocs": {
+        "meta": {
+            "status": "ok",
+            "statuscode": 200,
+            "message": "OK"
+        },
+        "data": {
+            "version": {
+                "major": 32,
+                "minor": 0,
+                "micro": 0,
+                "string": "32.0.0 dev",
+                "edition": "",
+                "extendedSupport": false
+            },
+            "capabilities": {
+                "core": {
+                    "pollinterval": 60,
+                    "webdav-root": "remote.php\/webdav",
+                    "reference-api": true,
+                    "reference-regex": "(\\s|\\n|^)(https?:\\\/\\\/)([-A-Z0-9+_.]+(?::[0-9]+)?(?:\\\/[-A-Z0-9+&@#%?=~_|!:,.;()]*)*)(\\s|\\n|$)",
+                    "mod-rewrite-working": false
+                },
+                "bruteforce": {
+                    "delay": 0,
+                    "allow-listed": false
+                },
+                "files": {
+                    "$comment": "\"blacklisted_files\" is deprecated as of Nextcloud 30, use \"forbidden_filenames\" instead",
+                    "blacklisted_files": [
+                        ".htaccess"
+                    ],
+                    "forbidden_filenames": [
+                        ".htaccess"
+                    ],
+                    "forbidden_filename_basenames": [],
+                    "forbidden_filename_characters": [
+                        "\\",
+                        "\/"
+                    ],
+                    "forbidden_filename_extensions": [
+                        ".filepart",
+                        ".part"
+                    ],
+                    "bigfilechunking": true,
+                    "chunked_upload": {
+                        "max_size": 104857600,
+                        "max_parallel_count": 5
+                    },
+                    "file_conversions": [],
+                    "windows_compatible_filenames": false,
+                    "directEditing": {
+                        "url": "http:\/\/nextcloud.local\/ocs\/v2.php\/apps\/files\/api\/v1\/directEditing",
+                        "etag": "4ce473bf0dbeb3a09bb0f38e30bc31c4",
+                        "supportsFileId": true
+                    },
+                    "comments": true,
+                    "undelete": true,
+                    "delete_from_trash": true,
+                    "versioning": true,
+                    "version_labeling": true,
+                    "version_deletion": true
+                },
+                "circles": {
+                    "version": "32.0.0-dev.0",
+                    "status": {
+                        "globalScale": false
+                    },
+                    "settings": {
+                        "frontendEnabled": true,
+                        "allowedCircles": 262143,
+                        "allowedUserTypes": 31,
+                        "membersLimit": -1
+                    },
+                    "circle": {
+                        "constants": {
+                            "flags": {
+                                "1": "Alleen",
+                                "2": "Persoonlijk",
+                                "4": "Systeem",
+                                "8": "Zichtbaar",
+                                "16": "Open",
+                                "32": "Uitnodigen",
+                                "64": "Deelnameverzoek",
+                                "128": "Vrienden",
+                                "256": "Wachtwoord-beveiligd",
+                                "512": "Geen eigenaar",
+                                "1024": "Verborgen",
+                                "2048": "Backend",
+                                "4096": "Lokaal",
+                                "8192": "Root",
+                                "16384": "Teamuitnodiging",
+                                "32768": "Gefedereerd",
+                                "65536": "Aankoppelpunt"
+                            },
+                            "source": {
+                                "core": {
+                                    "1": "Nextcloud Account",
+                                    "2": "Nextcloud Groep",
+                                    "4": "E-mailadres",
+                                    "8": "Contact",
+                                    "16": "Kring",
+                                    "10000": "Nextcloud App"
+                                },
+                                "extra": {
+                                    "10001": "Circles App",
+                                    "10002": "Admin Command Line"
+                                }
+                            }
+                        },
+                        "config": {
+                            "coreFlags": [
+                                1,
+                                2,
+                                4
+                            ],
+                            "systemFlags": [
+                                512,
+                                1024,
+                                2048
+                            ]
+                        }
+                    },
+                    "member": {
+                        "constants": {
+                            "level": {
+                                "1": "Lid",
+                                "4": "Moderator",
+                                "8": "Beheerder",
+                                "9": "Eigenaar"
+                            }
+                        },
+                        "type": {
+                            "0": "single",
+                            "1": "user",
+                            "2": "group",
+                            "4": "mail",
+                            "8": "contact",
+                            "16": "circle",
+                            "10000": "app"
+                        }
+                    },
+                    "teamResourceProviders": [
+                        "files"
+                    ]
+                },
+                "ocm": {
+                    "enabled": true,
+                    "apiVersion": "1.0-proposal1",
+                    "version": "1.1.0",
+                    "endPoint": "http:\/\/nextcloud.local\/index.php\/ocm",
+                    "publicKey": {
+                        "keyId": "https:\/\/nextcloud.local\/ocm#signature",
+                        "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6kDENEfcFb25mbizAlq9\npFMCieO52yYyKMlhCpPEWrV1+8BwOcjXxL1Wm\/i7lgpgKG6LdjQHW4ATCu7JdPoK\nGfyzT\/ziJ5PChxgFR\/iFnyrCx+G9goUszP2HZ0us631mRff3K6M3hHP0ezP4KfUt\nELE2Fx6LplT2JG5WE6DMqV3y3R8yRncIRuuxRgElIxm1gNLASrCti2B+SR2+nQda\nO4QLmJlXJQnI7s33Y7eiGUWAAHjrO3CPrtDNAYsUQ3r6LGggfzLrXDNLwYSR66XL\nASGrgV4RED8w4iKwnryYRw1Qiszc9f7g4HMSfUONUnE1iDbAq+iNyWg0mXgfkJYR\nawIDAQAB\n-----END PUBLIC KEY-----\n"
+                    },
+                    "resourceTypes": [
+                        {
+                            "name": "file",
+                            "shareTypes": [
+                                "user",
+                                "group"
+                            ],
+                            "protocols": {
+                                "webdav": "\/public.php\/webdav\/"
+                            }
+                        }
+                    ],
+                    "capabilities": [
+                        "\/invite-accepted",
+                        "\/notifications",
+                        "\/shares"
+                    ]
+                },
+                "dav": {
+                    "chunking": "1.0",
+                    "public_shares_chunking": true,
+                    "bulkupload": "1.0",
+                    "absence-supported": true,
+                    "absence-replacement": true
+                },
+                "files_sharing": {
+                    "api_enabled": true,
+                    "public": {
+                        "enabled": true,
+                        "password": {
+                            "enforced": false,
+                            "askForOptionalPassword": false
+                        },
+                        "expire_date": {
+                            "enabled": false
+                        },
+                        "multiple_links": true,
+                        "expire_date_internal": {
+                            "enabled": false
+                        },
+                        "expire_date_remote": {
+                            "enabled": false
+                        },
+                        "send_mail": false,
+                        "upload": true,
+                        "upload_files_drop": true,
+                        "custom_tokens": false
+                    },
+                    "resharing": true,
+                    "user": {
+                        "send_mail": false,
+                        "expire_date": {
+                            "enabled": true
+                        }
+                    },
+                    "group_sharing": true,
+                    "group": {
+                        "enabled": true,
+                        "expire_date": {
+                            "enabled": true
+                        }
+                    },
+                    "default_permissions": 31,
+                    "federation": {
+                        "outgoing": true,
+                        "incoming": true,
+                        "expire_date": {
+                            "enabled": true
+                        },
+                        "expire_date_supported": {
+                            "enabled": true
+                        }
+                    },
+                    "sharee": {
+                        "query_lookup_default": false,
+                        "always_show_unique": true
+                    },
+                    "sharebymail": {
+                        "enabled": true,
+                        "send_password_by_mail": true,
+                        "upload_files_drop": {
+                            "enabled": true
+                        },
+                        "password": {
+                            "enabled": true,
+                            "enforced": false
+                        },
+                        "expire_date": {
+                            "enabled": true,
+                            "enforced": false
+                        }
+                    }
+                },
+                "provisioning_api": {
+                    "version": "1.22.0",
+                    "AccountPropertyScopesVersion": 2,
+                    "AccountPropertyScopesFederatedEnabled": true,
+                    "AccountPropertyScopesPublishedEnabled": false
+                },
+                "recommendations": {
+                    "enabled": true
+                },
+                "systemtags": {
+                    "enabled": true
+                },
+                "theming": {
+                    "name": "Nextcloud",
+                    "productName": "Nextcloud",
+                    "url": "https:\/\/nextcloud.com",
+                    "slogan": "een veilige plek voor al je gegevens",
+                    "color": "#1c243c",
+                    "color-text": "#ffffff",
+                    "color-element": "#4d63a4",
+                    "color-element-bright": "#4d63a4",
+                    "color-element-dark": "#4d63a4",
+                    "logo": "http:\/\/nextcloud.local\/core\/img\/logo\/logo.svg?v=0",
+                    "background": "\/apps\/theming\/img\/background\/zoltan-voros-rhythm-and-blues.jpg",
+                    "background-text": "#ffffff",
+                    "background-plain": false,
+                    "background-default": true,
+                    "logoheader": "http:\/\/nextcloud.local\/core\/img\/logo\/logo.svg?v=0",
+                    "favicon": "http:\/\/nextcloud.local\/core\/img\/logo\/logo.svg?v=0"
+                },
+                "user_status": {
+                    "enabled": true,
+                    "restore": true,
+                    "supports_emoji": true
+                },
+                "weather_status": {
+                    "enabled": true
+                }
+            }
+        }
+    }
+}
