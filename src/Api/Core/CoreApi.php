@@ -23,4 +23,9 @@ class CoreApi
     {
         return app(AppPasswordEndpoint::class);
     }
+
+    public function autoComplete(): AutoCompleteEndpoint
+    {
+        return app(AutoCompleteEndpoint::class);
+    }
 }

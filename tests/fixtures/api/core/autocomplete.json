@@ -1,0 +1,61 @@
+{
+    "ocs": {
+        "meta": {
+            "status": "ok",
+            "statuscode": 200,
+            "message": "OK"
+        },
+        "data": [
+            {
+                "id": "user1",
+                "label": "user1",
+                "icon": "icon-user",
+                "source": "users",
+                "status": {
+                    "status": "string",
+                    "message": "string",
+                    "icon": "string",
+                    "clearAt": 0
+                },
+                "subline": "",
+                "shareWithDisplayNameUnique": "user1"
+            },
+            {
+                "id": "user2",
+                "label": "user2",
+                "icon": "icon-user",
+                "source": "users",
+                "status": "",
+                "subline": "",
+                "shareWithDisplayNameUnique": "user2"
+            },
+            {
+                "id": "user3",
+                "label": "user3",
+                "icon": "icon-user",
+                "source": "users",
+                "status": "",
+                "subline": "",
+                "shareWithDisplayNameUnique": "user3"
+            },
+            {
+                "id": "user4",
+                "label": "user4",
+                "icon": "icon-user",
+                "source": "users",
+                "status": "",
+                "subline": "",
+                "shareWithDisplayNameUnique": "user4"
+            },
+            {
+                "id": "user5",
+                "label": "user5",
+                "icon": "icon-user",
+                "source": "users",
+                "status": "",
+                "subline": "",
+                "shareWithDisplayNameUnique": "user5"
+            }
+        ]
+    }
+}
