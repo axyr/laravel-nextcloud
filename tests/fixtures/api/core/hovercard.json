@@ -1,0 +1,27 @@
+{
+    "ocs": {
+        "meta": {
+            "status": "ok",
+            "statuscode": 200,
+            "message": "OK"
+        },
+        "data": {
+            "userId": "user1",
+            "displayName": "user1",
+            "actions": [
+                {
+                    "title": "Bekijk profiel",
+                    "icon": "http:\/\/nextcloud.local\/core\/img\/actions\/profile.svg",
+                    "hyperlink": "http:\/\/nextcloud.local\/index.php\/u\/user1",
+                    "appId": "profile"
+                },
+                {
+                    "title": "07:50 \u2022 2h behind",
+                    "icon": "http:\/\/nextcloud.local\/core\/img\/actions\/recent.svg",
+                    "hyperlink": "#",
+                    "appId": "timezone"
+                }
+            ]
+        }
+    }
+}

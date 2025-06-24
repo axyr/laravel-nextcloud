@@ -28,4 +28,9 @@ class CoreApi
     {
         return app(AutoCompleteEndpoint::class);
     }
+
+    public function hoverCard(): HoverCardEndpoint
+    {
+        return app(HoverCardEndpoint::class);
+    }
 }
